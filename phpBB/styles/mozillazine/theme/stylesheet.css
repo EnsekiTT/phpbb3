@@ -386,12 +386,13 @@ hr {
 /* CSS spec requires a:link, a:visited, a:hover and a:active rules to be specified in this order. */
 /* See http://www.phpbb.com/bugs/phpbb3/59685 */
 a:link {
-	color: #006597;
+	/*color: #006597;*/
+  color: rgb(0, 102, 102);
 	text-decoration: none;
 }
 
 a:visited {
-	color: #005784;
+	color: #005757;
 	text-decoration: none;
 }
 
@@ -406,7 +407,8 @@ a:active {
 }
 
 a.forumlink {
-	color: #069;
+	/*color: #069;*/
+  color: rgb(0, 102, 102);
 	font-weight: bold;
 	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 	font-size: 1.2em;
