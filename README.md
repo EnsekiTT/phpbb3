@@ -12,3 +12,6 @@ Mozillazine
 * mozilla.jp http://www.mozilla.jp/
 * dev.mozilla.jp https://dev.mozilla.jp/
 
+## FEED
+PHPBB3の機能を用いて作成したフィード
+* http://michi.mozlabs.jp/feed.php
