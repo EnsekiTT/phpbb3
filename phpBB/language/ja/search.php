@@ -103,6 +103,8 @@ $lang = array_merge($lang, array(
 	'SORT_TIME'					=> '投稿日時',
 
 	'TOO_FEW_AUTHOR_CHARS'	=> '投稿者名は %d 字以上である必要があります',
+
+  'SEARCH_MOZILLA' => 'Mozilla 横断検索',
 ));
 
 ?>

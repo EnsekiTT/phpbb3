@@ -1,0 +1,30 @@
+<!-- INCLUDE overall_header.html -->
+
+<div id="pagecontent">
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="4">{L_SEARCH_MOZILLA}</th>
+	</tr>
+	</table>
+  <div id="cse" style="width: 100%;">Loading</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> 
+  google.load('search', '1', {language : 'ja', style : google.loader.themes.V2_DEFAULT});
+  google.setOnLoadCallback(function() {
+    var customSearchOptions = {};  var customSearchControl = new google.search.CustomSearchControl(
+      '012521872289536628982:qdp3hlwcj_4', customSearchOptions);
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    customSearchControl.draw('cse');
+  }, true);
+</script>
+
+</div>
+
+<!-- INCLUDE breadcrumbs.html -->
+
+<br clear="all" />
+
+<div align="{S_CONTENT_FLOW_END}"><!-- INCLUDE jumpbox.html --></div>
+
+<!-- INCLUDE overall_footer.html -->

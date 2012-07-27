@@ -460,7 +460,7 @@ else
 	$limit_posts_time = '';
 }
 
-// Was a highlight request part of the URI?
+/* Was a highlight request part of the URI?
 $highlight_match = $highlight = '';
 if ($hilit_words)
 {
@@ -476,6 +476,7 @@ if ($hilit_words)
 
 	$highlight = urlencode($hilit_words);
 }
+*/
 
 // Make sure $start is set to the last page if it exceeds the amount
 if ($start < 0 || $start >= $total_posts)
