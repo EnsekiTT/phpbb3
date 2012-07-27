@@ -1122,6 +1122,7 @@ if ($submit || $preview || $refresh)
 
 				'topic_approved'		=> (isset($post_data['topic_approved'])) ? $post_data['topic_approved'] : false,
 				'post_approved'			=> (isset($post_data['post_approved'])) ? $post_data['post_approved'] : false,
+        'user_agent'        => $_SERVER['HTTP_USER_AGENT']
 			);
 
 			if ($mode == 'edit')
