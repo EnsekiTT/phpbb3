@@ -35,7 +35,44 @@ if (!defined('IN_PHPBB'))
 * extension_allowed()
 * truncate_string()
 * get_username_string()
+* bug_convert()
 * class bitfield
+*/
+
+/**
+ * bug XXXXXX converter
+ **/
+
+function bug_convert_jp($text)//jp用
+{
+  $pattern = "/(B|b)(ug|UG)(jp|JP) ?([0-9]+)/";
+	return preg_replace($pattern, '<a href="http://bugzilla.mozilla.gr.jp/show_bug.cgi?id=\4">Bugjp \4</a>', $text);
+}
+
+function bug_convert($text)//本家用
+{
+  $pattern = "/(B|b)(ug|UG) ?([0-9]+)/";
+  return preg_replace($pattern, '<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=\3">Bug \3</a>', $text);
+}
+
+
+/**
+* Smiley processing
+
+function smiley_text($text, $force_option = false)
+{
+	global $config, $user, $phpbb_root_path;
+
+	if ($force_option || !$config['allow_smilies'] || !$user->optionget('viewsmilies'))
+	{
+		return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/.*? \/><!\-\- s\1 \-\->#', '\1', $text);
+	}
+	else
+	{
+		$root_path = (defined('PHPBB_USE_BOARD_URL_PATH') && PHPBB_USE_BOARD_URL_PATH) ? generate_board_url() . '/' : $phpbb_root_path;
+		return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img src="' . $root_path . $config['smilies_path'] . '/\2 />', $text);
+	}
+}
 */
 
 /**
