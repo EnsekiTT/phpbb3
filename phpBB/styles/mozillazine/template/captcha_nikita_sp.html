@@ -1,0 +1,19 @@
+<!-- IF S_TYPE == 1 -->
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<h3>{L_CONFIRMATION}</h3>
+	<p>{L_CONFIRM_EXPLAIN}</p>
+
+	<fieldset class="fields2">
+<!-- ENDIF -->
+	<dl>
+		<dt><label for="confirm_code">{L_CONFIRM_CODE}:</label></dt>
+		<dd>{NIKITA_SP_IMAGE}</dd>
+		<dd><input type="text" class="inputbox autowidth" size="10" name="answer_field" value="" title="Проверочный код" /></dd>
+	</dl>
+<!-- IF S_TYPE == 1 -->
+	</fieldset>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
