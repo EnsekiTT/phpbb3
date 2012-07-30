@@ -1391,6 +1391,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 	$message = smiley_text($message);
   $message = bug_convert($message);
   $message = bug_convert_jp($message);
+  $message = cr_convert($message);
 
 	if (!empty($attachments[$row['post_id']]))
 	{

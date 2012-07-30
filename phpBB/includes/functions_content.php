@@ -36,8 +36,18 @@ if (!defined('IN_PHPBB'))
 * truncate_string()
 * get_username_string()
 * bug_convert()
+* cr_convert()
 * class bitfield
 */
+
+/**
+ * clashreport * converter
+ **/
+function cr_convert($text)
+{
+  $pattern = "/(C|c)(rashreport|RASHREPORT) ?([a-z|0-9|A-Z|-]+)/";
+	return preg_replace($pattern, '<a href="https://crash-stats.mozilla.com/report/index/\3">Clash Report - Report ID: \3</a>', $text);
+}
 
 /**
  * bug XXXXXX converter
