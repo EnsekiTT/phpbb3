@@ -1068,6 +1068,7 @@ while ($row = $db->sql_fetchrow($result))
 		'enable_sig'		=> $row['enable_sig'],
 		'friend'			=> $row['friend'],
 		'foe'				=> $row['foe'],
+    'user_agent' => $row['user_agent'],
 	);
 
 	// Define the global bbcode bitfield, will be used to load bbcodes
@@ -1465,7 +1466,6 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 			{
 				$display_username = get_username_string('full', $row['post_edit_user'], $user_cache[$row['post_edit_user']]['username'], $user_cache[$row['post_edit_user']]['user_colour']);
 			}
-
 			$l_edited_by = sprintf($l_edit_time_total, $display_username, $user->format_date($row['post_edit_time'], false, true), $row['post_edit_count']);
 		}
 	}
@@ -1539,6 +1539,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'POST_DATE'			=> $user->format_date($row['post_time'], false, ($view == 'print') ? true : false),
 		'POST_SUBJECT'		=> $row['post_subject'],
 		'MESSAGE'			=> $message,
+    'USER_AGENT' => $row['user_agent'],
 		'SIGNATURE'			=> ($row['enable_sig']) ? $user_cache[$poster_id]['sig'] : '',
 		'EDITED_MESSAGE'	=> $l_edited_by,
 		'EDIT_REASON'		=> $row['post_edit_reason'],
