@@ -56,7 +56,9 @@
 			<td class="row1" width="50" align="center"><p class="topicdetails">{topicrow.REPLIES}</p></td>
 			<td class="row2" width="50" align="center"><p class="topicdetails">{topicrow.VIEWS}</p></td>
 			<td class="row1" width="140" align="center">
-				<p class="topicdetails" style="white-space: nowrap;">{topicrow.LAST_POST_TIME}</p>
+				<p class="topicdetails" style="white-space: nowrap;">
+          <!-- IF not S_IS_BOT --><a href="{topicrow.U_LAST_POST}">{topicrow.LAST_POST_TIME}</a><!-- ENDIF -->
+        </p>
 				<p class="topicdetails">{topicrow.LAST_POST_AUTHOR_FULL}
 					<!-- IF not S_IS_BOT --><a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a><!-- ENDIF -->
 				</p>
@@ -207,7 +209,9 @@
 				<td class="row1" width="50" align="center"><p class="topicdetails">{topicrow.REPLIES}</p></td>
 				<td class="row2" width="50" align="center"><p class="topicdetails">{topicrow.VIEWS}</p></td>
 				<td class="row1" width="140" align="center">
-					<p class="topicdetails" style="white-space: nowrap;">{topicrow.LAST_POST_TIME}</p>
+					<p class="topicdetails" style="white-space: nowrap;">
+          <!-- IF not S_IS_BOT --><a href="{topicrow.U_LAST_POST}">{topicrow.LAST_POST_TIME}</a><!-- ENDIF -->
+          </p>
 					<p class="topicdetails">{topicrow.LAST_POST_AUTHOR_FULL}
 						<!-- IF not S_IS_BOT --><a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a><!-- ENDIF -->
 					</p>
