@@ -103,6 +103,7 @@ $lang = array_merge($lang, array(
 	'TOTAL_VOTES'			=> '投票総数',
 
 	'UNLOCK_TOPIC'			=> 'トピックを開放する',
+  'USERAGENT_RECORD' => 'ユーザエージェントを表示する',
 
 	'VIEW_INFO'				=> '記事の詳細',
 	'VIEW_NEXT_TOPIC'		=> '次のトピックへ',

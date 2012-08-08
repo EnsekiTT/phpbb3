@@ -206,7 +206,6 @@
 			var text_name = 'message';
 		// ]]>
 		</script>
-
 		<table width="100%" cellspacing="0" cellpadding="0" border="0">
 		<!-- INCLUDE posting_buttons.html -->
 		<tr>
@@ -289,6 +288,13 @@
 			<tr>
 				<td><input type="checkbox" class="radio" name="notify"{S_NOTIFY_CHECKED} /></td>
 				<td class="gen">{L_NOTIFY_REPLY}</td>
+			</tr>
+		<!-- ENDIF -->
+
+    <!-- IF S_USERAGENT_ALLOWED -->
+			<tr>
+				<td><input type="checkbox" class="radio" name="user_agent"{S_USERAGENT_CHECKED} /></td>
+				<td class="gen">{L_USERAGENT_RECORD}</td>
 			</tr>
 		<!-- ENDIF -->
 

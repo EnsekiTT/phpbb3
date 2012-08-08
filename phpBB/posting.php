@@ -546,7 +546,6 @@ if ($save && $user->data['is_registered'] && $auth->acl_get('u_savedrafts') && (
 				'disable_magic_url'	=> false,
 				'attach_sig'		=> true,
 				'lock_topic'		=> false,
-
 				'topic_type'		=> POST_NORMAL,
 				'topic_time_limit'	=> 0,
 
@@ -1076,8 +1075,11 @@ if ($submit || $preview || $refresh)
 
 				add_log('mod', $forum_id, $topic_id, 'LOG_' . $user_lock . (($change_topic_status == ITEM_LOCKED) ? 'LOCK' : 'UNLOCK'), $post_data['topic_title']);
 			}
-
-			// Lock/Unlock Post Edit
+      
+      /**************************/
+      (isset($_POST['user_agent'])) ? $useragent = $_SERVER['HTTP_USER_AGENT'] : $useragent = '';
+      
+      // Lock/Unlock Post Edit
 			if ($mode == 'edit' && $post_data['post_edit_locked'] == ITEM_LOCKED && !$post_lock && $auth->acl_get('m_edit', $forum_id))
 			{
 				$post_data['post_edit_locked'] = ITEM_UNLOCKED;
@@ -1103,6 +1105,7 @@ if ($submit || $preview || $refresh)
 				'enable_smilies'		=> (bool) $post_data['enable_smilies'],
 				'enable_urls'			=> (bool) $post_data['enable_urls'],
 				'enable_indexing'		=> (bool) $post_data['enable_indexing'],
+        'user_agent'        => (string) $useragent,
 				'message_md5'			=> (string) $message_md5,
 				'post_time'				=> (isset($post_data['post_time'])) ? (int) $post_data['post_time'] : $current_time,
 				'post_checksum'			=> (isset($post_data['post_checksum'])) ? (string) $post_data['post_checksum'] : '',
@@ -1122,7 +1125,6 @@ if ($submit || $preview || $refresh)
 
 				'topic_approved'		=> (isset($post_data['topic_approved'])) ? $post_data['topic_approved'] : false,
 				'post_approved'			=> (isset($post_data['post_approved'])) ? $post_data['post_approved'] : false,
-        'user_agent'        => $_SERVER['HTTP_USER_AGENT']
 			);
 
 			if ($mode == 'edit')
@@ -1130,7 +1132,6 @@ if ($submit || $preview || $refresh)
 				$data['topic_replies_real'] = $post_data['topic_replies_real'];
 				$data['topic_replies'] = $post_data['topic_replies'];
 			}
-
 			// The last parameter tells submit_post if search indexer has to be run
 			$redirect_url = submit_post($mode, $post_data['post_subject'], $post_data['username'], $post_data['topic_type'], $poll, $data, $update_message, ($update_message || $update_subject) ? true : false);
 
@@ -1343,9 +1344,10 @@ if ($post_data['enable_icons'] && $auth->acl_get('f_icons', $forum_id))
 $bbcode_checked		= (isset($post_data['enable_bbcode'])) ? !$post_data['enable_bbcode'] : (($config['allow_bbcode']) ? !$user->optionget('bbcode') : 1);
 $smilies_checked	= (isset($post_data['enable_smilies'])) ? !$post_data['enable_smilies'] : (($config['allow_smilies']) ? !$user->optionget('smilies') : 1);
 $urls_checked		= (isset($post_data['enable_urls'])) ? !$post_data['enable_urls'] : 0;
-$sig_checked		= $post_data['enable_sig'];
+$sig_checked  	= $post_data['enable_sig'];
 $lock_topic_checked	= (isset($topic_lock) && $topic_lock) ? $topic_lock : (($post_data['topic_status'] == ITEM_LOCKED) ? 1 : 0);
 $lock_post_checked	= (isset($post_lock)) ? $post_lock : $post_data['post_edit_locked'];
+
 
 // If the user is replying or posting and not already watching this topic but set to always being notified we need to overwrite this setting
 $notify_set			= ($mode != 'edit' && $config['allow_topic_notify'] && $user->data['is_registered'] && !$post_data['notify_set']) ? $user->data['user_notify'] : $post_data['notify_set'];
@@ -1410,8 +1412,17 @@ if (isset($captcha) && $captcha->is_solved() !== false)
 $form_enctype = (@ini_get('file_uploads') == '0' || strtolower(@ini_get('file_uploads')) == 'off' || !$config['allow_attachments'] || !$auth->acl_get('u_attach') || !$auth->acl_get('f_attach', $forum_id)) ? '' : ' enctype="multipart/form-data"';
 add_form_key('posting');
 
-
 // Start assigning vars for main posting page ...
+if($mode == 'edit'){
+  if($post_data['user_agent']){
+    $useragent_checked = true;
+  }else{
+    $useragent_checked = false;
+  }
+}else{
+  $useragent_checked = true; 
+}
+
 $template->assign_vars(array(
 	'L_POST_A'					=> $page_title,
 	'L_ICON'					=> ($mode == 'reply' || $mode == 'quote' || ($mode == 'edit' && $post_id != $post_data['topic_first_post_id'])) ? $user->lang['POST_ICON'] : $user->lang['TOPIC_ICON'],
@@ -1455,6 +1466,8 @@ $template->assign_vars(array(
 	'S_SIGNATURE_CHECKED'		=> ($sig_checked) ? ' checked="checked"' : '',
 	'S_NOTIFY_ALLOWED'			=> (!$user->data['is_registered'] || ($mode == 'edit' && $user->data['user_id'] != $post_data['poster_id']) || !$config['allow_topic_notify'] || !$config['email_enable']) ? false : true,
 	'S_NOTIFY_CHECKED'			=> ($notify_checked) ? ' checked="checked"' : '',
+  'S_USERAGENT_ALLOWED' => true,
+  'S_USERAGENT_CHECKED' => ($useragent_checked) ? ' checked="checked"' : '',
 	'S_LOCK_TOPIC_ALLOWED'		=> (($mode == 'edit' || $mode == 'reply' || $mode == 'quote') && ($auth->acl_get('m_lock', $forum_id) || ($auth->acl_get('f_user_lock', $forum_id) && $user->data['is_registered'] && !empty($post_data['topic_poster']) && $user->data['user_id'] == $post_data['topic_poster'] && $post_data['topic_status'] == ITEM_UNLOCKED))) ? true : false,
 	'S_LOCK_TOPIC_CHECKED'		=> ($lock_topic_checked) ? ' checked="checked"' : '',
 	'S_LOCK_POST_ALLOWED'		=> ($mode == 'edit' && $auth->acl_get('m_edit', $forum_id)) ? true : false,

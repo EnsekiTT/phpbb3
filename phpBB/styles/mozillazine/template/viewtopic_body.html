@@ -240,7 +240,11 @@
 					<!-- IF postrow.SIGNATURE -->
 						<div class="postbody"><br />_________________<br />{postrow.SIGNATURE}</div>
             <!-- IF postrow.USER_AGENT} -->
-              {postrow.USER_AGENT}
+            {postrow.USER_AGENT}
+            <!-- ENDIF -->
+          <!-- ELSE -->
+            <!-- IF postrow.USER_AGENT} -->
+						<div class="postbody"><br />_________________<br />{postrow.USER_AGENT}</div>
             <!-- ENDIF -->
 					<!-- ENDIF -->
 
