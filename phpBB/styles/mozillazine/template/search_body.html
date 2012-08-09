@@ -41,6 +41,17 @@
 		<td class="row1" nowrap="nowrap"><b class="genmed">{L_RETURN_FIRST}: </b></td>
 		<td class="row2" nowrap="nowrap"><select name="ch">{S_CHARACTER_OPTIONS}</select> <span class="genmed">{L_POST_CHARACTERS}</span></td>
 	</tr>
+  <tr>
+		<td class="row1" nowrap="nowrap"><b class="genmed">閉鎖トピック: </b></td>
+		<td class="row2" nowrap="nowrap">
+      <input type="radio" class="radio" name="lock" value="2" checked="checked" />
+      <span class="genmed">全てのトピック</span>&nbsp;&nbsp;
+      <input type="radio" class="radio" name="lock" value="1" /> 
+      <span class="genmed">閉鎖中のトピック</span>&nbsp;&nbsp;
+      <input type="radio" class="radio" name="lock" value="0" /> 
+      <span class="genmed">未閉鎖のトピック</span>
+    </td>
+  </tr>
 	<tr>
 		<td class="cat" colspan="4" align="center">{S_HIDDEN_FIELDS}<input class="btnmain" name="submit" type="submit" value="{L_SEARCH}" />&nbsp;&nbsp;<input class="btnlite" type="reset" value="{L_RESET}" /></td>
 	</tr>

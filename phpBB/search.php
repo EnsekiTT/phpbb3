@@ -44,6 +44,8 @@ $sort_days		= request_var('st', 0);
 $sort_key		= request_var('sk', 't');
 $sort_dir		= request_var('sd', 'd');
 
+$lock_status = request_var('lock', 0);
+
 $return_chars	= request_var('ch', ($topic_id) ? -1 : 300);
 $search_forum	= request_var('fid', array(0));
 
@@ -526,6 +528,11 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 		$sql_where .= $db->sql_in_set(($show_results == 'posts') ? 'p.post_id' : 't.topic_id', $id_ary);
 		$sql_where .= (sizeof($ex_fid_ary)) ? ' AND (' . $db->sql_in_set('f.forum_id', $ex_fid_ary, true) . ' OR f.forum_id IS NULL)' : '';
 		$sql_where .= ($show_results == 'posts') ? $m_approve_fid_sql : str_replace(array('p.post_approved', 'p.forum_id'), array('t.topic_approved', 't.forum_id'), $m_approve_fid_sql);
+    if($lock_status == 0){
+      $sql_where .= ' AND (t.topic_status = 0)';
+    }else if($lock_status == 1){
+      $sql_where .= ' AND (t.topic_status = 1)';
+    }
 	}
 
 	if ($show_results == 'posts')
