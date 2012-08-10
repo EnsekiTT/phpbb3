@@ -456,7 +456,7 @@ class fulltext_native extends search_backend
 
 		// try reading the results from cache
 		$total_results = 0;
-		if ($this->obtain_ids($search_key, $total_results, $id_ary, $start, $per_page, $sort_dir) == SEARCH_RESULT_IN_CACHE && 0) //********&& 0 を消してね。
+		if ($this->obtain_ids($search_key, $total_results, $id_ary, $start, $per_page, $sort_dir) == SEARCH_RESULT_IN_CACHE)
 		{
       
 			return $total_results;
