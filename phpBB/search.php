@@ -39,13 +39,14 @@ $show_results	= ($show_results == 'posts') ? 'posts' : 'topics';
 $search_terms	= request_var('terms', 'all');
 $search_fields	= request_var('sf', 'all');
 $search_child	= request_var('sc', true);
-
 $sort_days		= request_var('st', 0);
 $sort_key		= request_var('sk', 't');
 $sort_dir		= request_var('sd', 'd');
 
-$lock_status = request_var('lock', 0);
-
+$lock_status = request_var('lock', 2);
+if($lock_status != 2){
+  $show_results = 'topics';
+}
 $return_chars	= request_var('ch', ($topic_id) ? -1 : 300);
 $search_forum	= request_var('fid', array(0));
 
@@ -507,7 +508,7 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 
 	if (!empty($search->search_query))
 	{
-		$total_match_count = $search->keyword_search($show_results, $search_fields, $search_terms, $sort_by_sql, $sort_key, $sort_dir, $sort_days, $ex_fid_ary, $m_approve_fid_ary, $topic_id, $author_id_ary, $sql_author_match, $id_ary, $start, $per_page);
+		$total_match_count = $search->keyword_search($show_results, $search_fields, $search_terms, $sort_by_sql, $sort_key, $sort_dir, $sort_days, $ex_fid_ary, $m_approve_fid_ary, $topic_id, $lock_status, $author_id_ary, $sql_author_match, $id_ary, $start, $per_page);
 	}
 	else if (sizeof($author_id_ary))
 	{
@@ -579,6 +580,7 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 	$u_search .= ($author_id) ? '&amp;author_id=' . $author_id : '';
 	$u_search .= ($u_search_forum) ? '&amp;fid%5B%5D=' . $u_search_forum : '';
 	$u_search .= (!$search_child) ? '&amp;sc=0' : '';
+  $u_search .= ($lock_status) ? '&amp;lock=' . $lock_status : '';
 	$u_search .= ($search_fields != 'all') ? '&amp;sf=' . $search_fields : '';
 	$u_search .= ($return_chars != 300) ? '&amp;ch=' . $return_chars : '';
 

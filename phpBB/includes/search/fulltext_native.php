@@ -418,7 +418,7 @@ class fulltext_native extends search_backend
 	*
 	* @access	public
 	*/
-	function keyword_search($type, $fields, $terms, $sort_by_sql, $sort_key, $sort_dir, $sort_days, $ex_fid_ary, $m_approve_fid_ary, $topic_id, $author_ary, $author_name, &$id_ary, $start, $per_page)
+	function keyword_search($type, $fields, $terms, $sort_by_sql, $sort_key, $sort_dir, $sort_days, $ex_fid_ary, $m_approve_fid_ary, $topic_id, $lock_status, $author_ary, $author_name, &$id_ary, $start, $per_page)
 	{
 		global $config, $db;
 
@@ -447,6 +447,7 @@ class fulltext_native extends search_backend
 			$sort_days,
 			$sort_key,
 			$topic_id,
+      $lock_status,
 			implode(',', $ex_fid_ary),
 			implode(',', $m_approve_fid_ary),
 			implode(',', $author_ary),
@@ -455,8 +456,9 @@ class fulltext_native extends search_backend
 
 		// try reading the results from cache
 		$total_results = 0;
-		if ($this->obtain_ids($search_key, $total_results, $id_ary, $start, $per_page, $sort_dir) == SEARCH_RESULT_IN_CACHE)
+		if ($this->obtain_ids($search_key, $total_results, $id_ary, $start, $per_page, $sort_dir) == SEARCH_RESULT_IN_CACHE && 0) //********&& 0 を消してね。
 		{
+      
 			return $total_results;
 		}
 
@@ -468,7 +470,7 @@ class fulltext_native extends search_backend
 		$w_num = 0;
 
 		$sql_array = array(
-			'SELECT'	=> ($type == 'posts') ? 'p.post_id' : 'p.topic_id',
+      'SELECT'	=> ($type == 'posts') ? 'p.post_id' : 'p.topic_id',
 			'FROM'		=> array(
 				SEARCH_WORDMATCH_TABLE	=> array(),
 				SEARCH_WORDLIST_TABLE	=> array(),
@@ -478,7 +480,6 @@ class fulltext_native extends search_backend
 				'ON'	=> 'm0.post_id = p.post_id',
 			)),
 		);
-
 		$title_match = '';
 		$left_join_topics = false;
 		$group_by = true;
@@ -555,7 +556,7 @@ class fulltext_native extends search_backend
 			{
 				$sql_where[] = "m$m_num.word_id = $subquery";
 			}
-
+      
 			$sql_array['FROM'][SEARCH_WORDMATCH_TABLE][] = 'm' . $m_num;
 
 			if ($title_match)
@@ -568,6 +569,7 @@ class fulltext_native extends search_backend
 				$sql_where[] = "m$m_num.post_id = m0.post_id";
 			}
 			$m_num++;
+
 		}
 
 		foreach ($this->must_not_contain_ids as $key => $subquery)
@@ -662,9 +664,15 @@ class fulltext_native extends search_backend
 		{
 			$sql_where[] = 'p.post_time >= ' . (time() - ($sort_days * 86400));
 		}
+ 
+    if($lock_status == 1){
+      $sql_where[] = 't.topic_status = 1';
+    }else if($lock_status == 0){
+      $sql_where[] = 't.topic_status = 0';
+    }else{}
 
 		$sql_array['WHERE'] = implode(' AND ', $sql_where);
-
+    
 		$is_mysql = false;
 		// if the total result count is not cached yet, retrieve it from the db
 		if (!$total_results)
@@ -705,7 +713,7 @@ class fulltext_native extends search_backend
 					$result = $db->sql_query($sql);
 					$total_results = (int) $db->sql_fetchfield('total_results');
 					$db->sql_freeresult($result);
-
+          
 					if (!$total_results)
 					{
 						return false;
@@ -718,7 +726,6 @@ class fulltext_native extends search_backend
 
 		// Build sql strings for sorting
 		$sql_sort = $sort_by_sql[$sort_key] . (($sort_dir == 'a') ? ' ASC' : ' DESC');
-
 		switch ($sql_sort[0])
 		{
 			case 'u':
@@ -739,7 +746,7 @@ class fulltext_native extends search_backend
 		if ($left_join_topics)
 		{
 			$sql_array['LEFT_JOIN'][] = array(
-				'FROM'	=> array(TOPICS_TABLE => 't'),
+        'FROM'	=> array(TOPICS_TABLE => 't'),
 				'ON'	=> 'p.topic_id = t.topic_id'
 			);
 		}
@@ -747,11 +754,10 @@ class fulltext_native extends search_backend
 		$sql_array['WHERE'] = implode(' AND ', $sql_where);
 		$sql_array['GROUP_BY'] = ($group_by) ? (($type == 'posts') ? 'p.post_id' : 'p.topic_id') . ', ' . $sort_by_sql[$sort_key] : '';
 		$sql_array['ORDER_BY'] = $sql_sort;
-
 		unset($sql_where, $sql_sort, $group_by);
 
 		$sql = $db->sql_build_query('SELECT', $sql_array);
-		$result = $db->sql_query_limit($sql, $config['search_block_size'], $start);
+    $result = $db->sql_query_limit($sql, $config['search_block_size'], $start);
 
 		while ($row = $db->sql_fetchrow($result))
 		{
