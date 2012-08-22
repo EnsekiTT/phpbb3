@@ -480,6 +480,13 @@ class fulltext_native extends search_backend
 				'ON'	=> 'm0.post_id = p.post_id',
 			)),
 		);
+
+    if($type == 'posts'){
+      $sql_array['LEFT_JOIN'][1] = array('FROM' => array(TOPICS_TABLE => 't'),
+                                         'ON' => 'p.topic_id = t.topic_id',
+                                         );
+    }
+
 		$title_match = '';
 		$left_join_topics = false;
 		$group_by = true;

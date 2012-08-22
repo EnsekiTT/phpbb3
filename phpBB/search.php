@@ -44,9 +44,6 @@ $sort_key		= request_var('sk', 't');
 $sort_dir		= request_var('sd', 'd');
 
 $lock_status = request_var('lock', 2);
-if($lock_status != 2){
-  $show_results = 'topics';
-}
 $return_chars	= request_var('ch', ($topic_id) ? -1 : 300);
 $search_forum	= request_var('fid', array(0));
 
