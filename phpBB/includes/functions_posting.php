@@ -1785,7 +1785,8 @@ function submit_post($mode, $subject, $username, $topic_type, &$poll, &$data, $u
 				'post_attachment'	=> (!empty($data['attachment_data'])) ? 1 : 0,
 				'bbcode_bitfield'	=> $data['bbcode_bitfield'],
 				'bbcode_uid'		=> $data['bbcode_uid'],
-				'post_edit_locked'	=> $data['post_edit_locked'])
+				'post_edit_locked'	=> $data['post_edit_locked'],
+        'user_agent' => $data['user_agent'])
 			);
 
 			if ($update_message)

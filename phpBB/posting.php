@@ -1077,7 +1077,7 @@ if ($submit || $preview || $refresh)
 			}
       
       /**************************/
-      (isset($_POST['user_agent'])) ? $useragent = $_SERVER['HTTP_USER_AGENT'] : $useragent = '';
+      (isset($_POST['user_agent'])) ? $post_data['user_agent'] = $_SERVER['HTTP_USER_AGENT'] : $post_data['user_agent'] = '';
       
       // Lock/Unlock Post Edit
 			if ($mode == 'edit' && $post_data['post_edit_locked'] == ITEM_LOCKED && !$post_lock && $auth->acl_get('m_edit', $forum_id))
@@ -1105,7 +1105,7 @@ if ($submit || $preview || $refresh)
 				'enable_smilies'		=> (bool) $post_data['enable_smilies'],
 				'enable_urls'			=> (bool) $post_data['enable_urls'],
 				'enable_indexing'		=> (bool) $post_data['enable_indexing'],
-        'user_agent'        => (string) $useragent,
+        'user_agent'        => (string) $post_data['user_agent'],
 				'message_md5'			=> (string) $message_md5,
 				'post_time'				=> (isset($post_data['post_time'])) ? (int) $post_data['post_time'] : $current_time,
 				'post_checksum'			=> (isset($post_data['post_checksum'])) ? (string) $post_data['post_checksum'] : '',
@@ -1420,7 +1420,7 @@ if($mode == 'edit'){
     $useragent_checked = false;
   }
 }else{
-  $useragent_checked = true; 
+  $useragent_checked = true;
 }
 
 $template->assign_vars(array(
