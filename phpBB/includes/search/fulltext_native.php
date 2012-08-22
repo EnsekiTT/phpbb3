@@ -456,7 +456,7 @@ class fulltext_native extends search_backend
 
 		// try reading the results from cache
 		$total_results = 0;
-		if ($this->obtain_ids($search_key, $total_results, $id_ary, $start, $per_page, $sort_dir) == SEARCH_RESULT_IN_CACHE && 0) //*******&& 0を消してね
+		if ($this->obtain_ids($search_key, $total_results, $id_ary, $start, $per_page, $sort_dir) == SEARCH_RESULT_IN_CACHE)
 		{
       
 			return $total_results;
@@ -469,27 +469,17 @@ class fulltext_native extends search_backend
 		$m_num = 0;
 		$w_num = 0;
 
-
-    $sql_array = array(
-                       'SELECT'	=> ($type == 'posts') ? 'p.post_id' : 'p.topic_id',
-                       'FROM'		=> array(
-                                         SEARCH_WORDMATCH_TABLE	=> array(),
-                                         SEARCH_WORDLIST_TABLE	=> array(),
-                                         ),
-                       'LEFT_JOIN' => array(
-                                            array(
-                                                  'FROM'	=> array(POSTS_TABLE => 'p'),
-                                                  'ON'	=> 'm0.post_id = p.post_id',
-                                                  )
-                                            ),
-                       );
-    
-    if($type == 'posts'){
-      $sql_array['LEFT_JOIN'][1] = array('FROM' => array(TOPICS_TABLE => 't'),
-                                         'ON' => 'p.topic_id = t.topic_id',
-                                         );
-    }
-
+		$sql_array = array(
+      'SELECT'	=> ($type == 'posts') ? 'p.post_id' : 'p.topic_id',
+			'FROM'		=> array(
+				SEARCH_WORDMATCH_TABLE	=> array(),
+				SEARCH_WORDLIST_TABLE	=> array(),
+			),
+			'LEFT_JOIN' => array(array(
+				'FROM'	=> array(POSTS_TABLE => 'p'),
+				'ON'	=> 'm0.post_id = p.post_id',
+			)),
+		);
 		$title_match = '';
 		$left_join_topics = false;
 		$group_by = true;
