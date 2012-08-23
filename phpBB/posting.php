@@ -1078,7 +1078,7 @@ if ($submit || $preview || $refresh)
       
       /**************************/
       if(isset($_POST['user_agent'])){
-        if(isset($post_data['user_agent']) == false){
+        if($post_data['user_agent'] == ''){
           $post_data['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
         }
       }else{ 
