@@ -1077,8 +1077,13 @@ if ($submit || $preview || $refresh)
 			}
       
       /**************************/
-      (isset($_POST['user_agent'])) ? $post_data['user_agent'] = $_SERVER['HTTP_USER_AGENT'] : $post_data['user_agent'] = '';
-      
+      if(isset($_POST['user_agent'])){
+        if(isset($post_data['user_agent']) == false){
+          $post_data['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+        }
+      }else{ 
+        $post_data['user_agent'] = '';
+      }
       // Lock/Unlock Post Edit
 			if ($mode == 'edit' && $post_data['post_edit_locked'] == ITEM_LOCKED && !$post_lock && $auth->acl_get('m_edit', $forum_id))
 			{
