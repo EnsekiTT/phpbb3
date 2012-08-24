@@ -4372,7 +4372,10 @@ function phpbb_http_login($param)
 
 	trigger_error('NOT_AUTHORISED');
 }
-
+function r_arrays($r){
+  $r = preg_replace('/[\n\r]+/',"','",$r);
+  return $r;
+}
 /**
 * Generate page header
 */
@@ -4658,7 +4661,18 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'T_ICONS'				=> $config['icons_path'],
 		'T_RANKS'				=> $config['ranks_path'],
 		'T_UPLOAD'				=> $config['upload_path'],
-
+    'SITE_FULL_URL'			=> generate_board_url(),
+		'S_WYSIWYG_BG'	=> $config['wysiwyg_bg'],
+		'S_WYSIWYG_COLOR'	=> $config['wysiwyg_color'],
+		'S_WYSIWYG_FONTS'	=> "'" .r_arrays($config['wysiwyg_fonts']). "'",
+		'S_WYSIWYG_EXP'	=> "'" . html_entity_decode(r_arrays($config['wysiwyg_exp'])) . "'" ,
+		'S_PALET'	=> $config['palet'],
+		'S_EXP'	=> $config['EXP'],
+		'S_E_DIR'	=> $config['wdir'],
+		'S_BBCODE_IMAGE_SHOW'	=> ($config['bbcode_image_show'] == 1 ) ? true:false,
+		'S_WYSIWYG_SHOW'	=> ($config['wysiwyg_show'] == 1 ) ? true:false,
+		'S_LINK_P'	=> $config['link_p'],
+		'S_WYSIWYG_STATUS' => $user->data['user_wysiwyg'],
 		'SITE_LOGO_IMG'			=> $user->img('site_logo'),
 
 		'A_COOKIE_SETTINGS'		=> addslashes('; path=' . $config['cookie_path'] . ((!$config['cookie_domain'] || $config['cookie_domain'] == 'localhost' || $config['cookie_domain'] == '127.0.0.1') ? '' : '; domain=' . $config['cookie_domain']) . ((!$config['cookie_secure']) ? '' : '; secure')),

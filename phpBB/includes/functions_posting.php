@@ -15,6 +15,10 @@ if (!defined('IN_PHPBB'))
 {
 	exit;
 }
+if (isset($user))
+{
+$user->add_lang('mods/wysiwyg');
+}
 
 /**
 * Fill smiley templates (or just the variables) with smilies, either in a window or inline

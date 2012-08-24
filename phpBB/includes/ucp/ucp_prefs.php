@@ -295,12 +295,14 @@ class ucp_prefs
 			break;
 
 			case 'post':
-
+        $user->add_lang('mods/wysiwyg');
 				$data = array(
 					'bbcode'	=> request_var('bbcode', $user->optionget('bbcode')),
+          'wysiwyg_status'        => request_var('wysiwyg_status', $user->data['user_wysiwyg']),
 					'smilies'	=> request_var('smilies', $user->optionget('smilies')),
 					'sig'		=> request_var('sig', $user->optionget('attachsig')),
 					'notify'	=> request_var('notify', (bool) $user->data['user_notify']),
+          'user_wysiwyg'       => $data['wysiwyg_status'],
 				);
 				add_form_key('ucp_prefs_post');
 
@@ -335,6 +337,7 @@ class ucp_prefs
 
 				$template->assign_vars(array(
 					'S_BBCODE'	=> $data['bbcode'],
+          'S_WYSIWYG_STATUS'    =>  $data['wysiwyg_status'],
 					'S_SMILIES'	=> $data['smilies'],
 					'S_SIG'		=> $data['sig'],
 					'S_NOTIFY'	=> $data['notify'])

@@ -1,0 +1,145 @@
+<!-- IF S_WYSIWYG_SHOW && S_WYSIWYG_STATUS -->
+	<div id="smiley-box">
+		<!-- IF S_SMILIES_ALLOWED and .smiley -->
+			<strong>{L_SMILIES}</strong><br />
+			<!-- BEGIN smiley -->
+			<a href="#" onclick="AddSmileyIcon('{SITE_FULL_URL}{smiley.SMILEY_IMG}','{smiley.SMILEY_CODE}'); return false;"><img src="{smiley.SMILEY_IMG}" width="{smiley.SMILEY_WIDTH}" height="{smiley.SMILEY_HEIGHT}" alt="{smiley.SMILEY_CODE}" title="{smiley.SMILEY_DESC}" /></a>
+			<!-- END smiley -->
+			<!-- ENDIF -->
+			<!-- IF S_SHOW_SMILEY_LINK and S_SMILIES_ALLOWED-->
+			<br /><a href="{U_MORE_SMILIES}" onclick="popup(this.href, 300, 350, '_phpbbsmilies'); return false;">{L_MORE_SMILIES}</a>
+			<!-- ENDIF -->
+			<!-- IF S_EDIT_DRAFT || S_DISPLAY_REVIEW -->
+			<!-- IF S_DISPLAY_REVIEW --><hr /><!-- ENDIF -->
+			<!-- IF S_EDIT_DRAFT --><strong><a href="{S_UCP_ACTION}">{L_BACK_TO_DRAFTS}</a></strong><!-- ENDIF -->
+			<!-- IF S_DISPLAY_REVIEW --><strong><a href="#review">{L_TOPIC_REVIEW}</a></strong><!-- ENDIF -->
+		<!-- ENDIF -->
+	</div>
+	<div id="message-box">
+	<textarea id="dvSample" style="display:none;position:absolute;top:-20;left:-20;width:1px;height:1px">{MESSAGE}{DRAFT_MESSAGE}{SIGNATURE}</textarea>
+	<!-- IF S_SMILIES_ALLOWED and .smiley -->
+    <script type="text/javascript">
+    <!--
+    var smiley_wysiwyg = true;
+    var smiley_code = new Array(<!-- BEGIN smiley_wysiwyg -->'{smiley_wysiwyg.A_SMILEY_CODE}'<!-- IF not smiley_wysiwyg.S_LAST_ROW -->,<!-- ENDIF --><!-- END smiley_wysiwyg -->);
+    var smiley_img = new Array(<!-- BEGIN smiley_wysiwyg -->'{smiley_wysiwyg.SMILEY_IMG}'<!-- IF not smiley_wysiwyg.S_LAST_ROW -->,<!-- ENDIF --><!-- END smiley_wysiwyg -->);
+    var smiley_path = "{SMILEY_PATH}";
+    var smiley_total = {SMILEY_TOTAL};
+    //-->
+    </script>
+    <!-- ENDIF -->
+	<script type="text/javascript" src="{SITE_FULL_URL}/images/wc.js"></script>
+	<script language="Javascript">
+	function hideall(){
+	 document.getElementById('Colorpalettehs').style.display="none";
+	 document.getElementById('Colorpalettefs').style.display="none";
+	 document.getElementById('m1').style.display="none";
+	 document.getElementById('m2').style.display="none";
+	 <!-- IF S_EXP -->
+	 document.getElementById('m3').style.display="none";
+	<!-- ENDIF -->
+	 document.getElementById('m4').style.display="none";
+	 document.getElementById('uploaderrel').style.display="none";
+	};
+	document.writeln('<style type="text/css">.container{width:100%;min-width:570px;background-color:#FFFFFF;border:1px solid #B5C4DD;}.toolbar{background-image:url("{SITE_FULL_URL}/images/editor/toolbar_background.gif");padding:4px 0;}.toolbar2{background-image:url("{SITE_FULL_URL}/images/editor/toolbar_background.gif");height:26px;padding:0;}.button{padding:2px;}.oover{border:1px solid #316ac5;background:#f1f6f8;padding:1px;}#sddm{margin:0;padding:0;z-index:30}#sddm li{margin:0;padding:0;list-style:none;float:left;font:bold 11px arial}#sddm li img{display:block;margin:0 1px 0 0;padding:1px 2px}#sddm li a{display:block;margin:0 1px 0 0;padding:3px 10px;background-image:url("{SITE_FULL_URL}/images/editor/custom.gif");width:116px;color:#989898;text-align:center;text-decoration:none}#sddm div{overflow:auto;width:160px;height:120px;-moz-opacity:.8;filter:alpha(opacity=80);opacity:.80;margin:0;padding:0;background:#fff;border:1px solid #eee}#sddm div img{width:120px;}#sddm div a{position:relative;display:block;margin:0;padding:5px 10px;width:auto;white-space:nowrap;text-align:left;text-decoration:none;background:#FFF;color:#000}#sddm div a:hover{background:#eee;color:#545454;border:1px solid #7d7d7d}.rteStart {background-image:url({SITE_FULL_URL}/images/editor/start.gif);float:left;height:25px;width:7px;}</style>');
+	document.writeln('<div class="container"><div class="rteStart"></div><div class="toolbar">');
+	var fontsarr=[{S_WYSIWYG_FONTS}];
+	var l_sent =[{S_WYSIWYG_EXP}];
+	var lang_s = new Array("{L_E_FONT}","{L_E_SIZE}","{L_E_P}","{S_EXP}","{S_LINK_P}","{S_PALET}","{S_WYSIWYG_BG}","{S_WYSIWYG_COLOR}","{L_ENTER_DESC}","{S_E_DIR}","{SITE_FULL_URL}/","{L_E_IMM}","{L_E_URL}","{S_LINK_P}","{L_E_ENTER_VIDEO}","{L_E_ROWS}","{L_E_COLUM}","{L_E_DISABLE}");
+	<!-- IF S_BBCODE_ALLOWED -->
+	// print toolbar icons with commands
+	var lang = new Array("{L_E_UNDO}","{L_E_REDO}","","{L_E_B}","{L_E_U}","{L_E_I}","{L_E_S}","","{L_E_HR}","{L_E_SUP}","{L_E_SUB}","","{L_E_REMOVE}","{L_E_BACKPALETTE}","{L_E_PALETTE}",<!-- IF S_LINKS_ALLOWED -->"{L_E_LINK}","{L_E_UNLINK}",<!-- ENDIF -->"",<!-- IF S_BBCODE_IMG -->"{L_E_IMAGE}",<!-- ENDIF -->"{L_E_TABLE}","","{L_E_JL}","{L_E_JC}","{L_E_JR}","{L_E_JF}","","{L_E_OL}","{L_E_UL}",""<!-- IF S_BBCODE_QUOTE -->,"{L_E_QUOTE}"<!-- ENDIF -->,"{L_E_CODE}","{L_E_PHPCODE}","{L_E_RF}"<!-- IF S_BBCODE_FLASH -->,"{L_E_FLASH}"<!-- ENDIF -->,"{L_E_OUT}","{L_E_IND}","{L_E_EX}","{L_E_CON}","");
+	var button_command = new Array("comm._command('Undo')","comm._command('Redo')","","comm._command(\'bold\')","comm._command('underline')","comm._command('italic')","comm._command('StrikeThrough')","","comm._command('InsertHorizontalRule')","comm._command('superscript')","comm._command('subscript')","","comm._command('delete')","toggle_visibility('cph','Colorpaletteh')","toggle_visibility('cpf','Colorpalettef')"<!-- IF S_LINKS_ALLOWED -->,"comm._url("+ lang_s[4] +")","comm._command('Unlink')"<!-- ENDIF -->,"",<!-- IF S_BBCODE_IMG -->"comm._image()",<!-- ENDIF -->"comm._table()","","comm._command('justifyleft')","comm._command('justifycenter')","comm._command('justifyright')","comm._command('justifyfull')","","comm._command('InsertOrderedlist')","comm._command('InsertUnOrderedlist')","",<!-- IF S_BBCODE_QUOTE -->"comm._HTML('[quote]','[/quote]')",<!-- ENDIF -->"comm._HTML('[code]','[/code]')","comm._HTML('[code=php]','[/code]')","comm._command('removeformat')",<!-- IF S_BBCODE_FLASH -->"comm._HTML('[flash=]','[/flash]')",<!-- ENDIF -->"comm._command('outdent')","comm._command('indent')","textbox_resize(100)","textbox_resize(-100)","");
+	var images = new Array("arrow_undo.gif","arrow_redo.gif","seperator.gif","text_bold.gif","text_underline.gif","text_italic.gif","strike.gif","seperator.gif","hr.gif","superscript.gif","subscript.gif","seperator.gif","del.gif","back.gif","palette.gif",<!-- IF S_LINKS_ALLOWED -->"world_link.gif","world_delete.gif",<!-- ENDIF -->"seperator.gif",<!-- IF S_BBCODE_IMG -->"photo.gif",<!-- ENDIF -->"table.gif","seperator.gif","text_align_left.gif","text_align_center.gif","text_align_right.gif","text_align_justify.gif","seperator.gif","text_list_numbers.gif","text_list_bullets.gif","seperator.gif",<!-- IF S_BBCODE_QUOTE -->"quote.gif",<!-- ENDIF -->"page_white_code.gif","page_white_php.gif","delete.gif",<!-- IF S_BBCODE_FLASH -->"flash.gif",<!-- ENDIF -->"text_indent_remove.gif","text_indent.gif","arrow_down.gif","arrow_up.gif","seperator.gif");
+	var ids = new Array;
+	ids[13] = 'Colorpaletteh';
+	ids[14] = 'Colorpalettef';
+	for (i=0;i<lang.length;i++)
+		if(ids[i]){
+		document.writeln( '<img src="{SITE_FULL_URL}/images/editor/'+ images[i] +'" class="button" onmouseover="overIcon(this)" onmouseout="outIcon(this)" title="'+lang[i]+'" id="'+ ids[i] +'"  rel="'+ ids[i] +'s" />');
+		}else if(lang[i] != ""){
+		document.writeln( '<img src="{SITE_FULL_URL}/images/editor/'+ images[i] +'" class="button" onClick="' + button_command[i] + ';" onmouseover="overIcon(this)" onmouseout="outIcon(this)" title="'+lang[i]+'" />');
+		}else{
+		document.writeln( '<img src="{SITE_FULL_URL}/images/editor/'+ images[i] +'" />');
+		}
+	document.writeln('<img id="uploader" class="button" rel="uploaderrel" onmouseover="overIcon(this)" onmouseout="outIcon(this)" src="{SITE_FULL_URL}/images/editor/upload.gif"/>');	
+	document.writeln('<img src="{SITE_FULL_URL}/images/editor/switch.gif" onclick="comm._toggle()" id="switch" style="border:1px solid #316ac5;background:#f1f6f8;padding:1px;" title="{L_E_SWITCH}" />');	
+	// custom BBcode
+	<!-- IF S_BBCODE_IMAGE_SHOW -->
+	document.writeln('<!-- BEGIN custom_tags --><img src="{SITE_FULL_URL}/images/editor/{custom_tags.BBCODE_TAG}.png"  class="button" onmouseover="overIcon(this)" onmouseout="outIcon(this)" alt="{custom_tags.BBCODE_TAG}" onclick="comm._HTML(\'[{custom_tags.BBCODE_TAG}]\',\'[/{custom_tags.BBCODE_TAG}]\')" title="{custom_tags.BBCODE_HELPLINE}" /><!-- END custom_tags --></div>');
+	<!-- ELSE -->
+	document.writeln('</div><div class="rteStart"></div><div class="toolbar2"><!-- BEGIN custom_tags --><input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="comm._HTML(\'[{custom_tags.BBCODE_TAG}]\',\'[/{custom_tags.BBCODE_TAG}]\')" title="{custom_tags.BBCODE_HELPLINE}" /><!-- END custom_tags --><div style="clear:both"></div></div>');
+	<!-- ENDIF -->
+	//Size menu
+	document.writeln('<div class="rteStart"></div><div class="toolbar2"><ul id="sddm"><li><a id="fontsize" rel="m1" href="#">'+ lang_s[1] +'</a><div id="m1" style="position:absolute; display:none;"><a href="javascript:;" onclick="comm._select(\'fontsize\',1);"><font size="1">1 (8pt)</font></a><a href="javascript:;" onclick="comm._select(\'fontsize\',2);"><font size="2">2 (10pt)</font></a><a href="javascript:;" onclick="comm._select(\'fontsize\',3);"><font size="3">3 (12pt)</font></a><a href="javascript:;" onclick="comm._select(\'fontsize\',4);"><font size="4">4 (14pt)</font></a><a href="javascript:;" onclick="comm._select(\'fontsize\',5);"><font size="5">5 (18pt)</font></a><a href="javascript:;" onclick="comm._select(\'fontsize\',6);"><font size="6">6 (24pt)</font></a></div></li>');
+	//font menu
+	document.writeln('<li><a id="fontfamily" rel="m2" href="#">'+ lang_s[0] +'</a><div id="m2" style="position:absolute; display:none;">');
+	for (i=0;i<fontsarr.length;i++)
+		document.writeln('<a href="javascript:;" onclick="comm._select(\'fontname\',\'' + fontsarr[i] + '\');"><font face="' + fontsarr[i] + '">' + fontsarr[i] + '</font></a>');
+		document.writeln('</a></div></li>');
+	// Heading menu
+	document.writeln('<li><a id="headingmenu" rel="m4" href="#">'+ lang_s[2] +'</a><div id="m4" style="position:absolute; display:none;"><a href="javascript:;" onclick="comm._select(\'formatblock\',\'<p>\');"><p style="margin: 0px; padding: 0px;">Paragraph</p></a><a href="javascript:;" onclick="comm._select(\'formatblock\',\'<h6>\');"><h6 style="margin: 0px; padding: 0px;">Heading 6</h6></a><a href="javascript:;" onclick="comm._select(\'formatblock\',\'<h5>\');"><h5 style="margin: 0px; padding: 0px;">Heading 5</h5></a><a href="javascript:;" onclick="comm._select(\'formatblock\',\'<h4>\');"><h4 style="margin: 0px; padding: 0px;">Heading 4</h4></a><a href="javascript:;" onclick="comm._select(\'formatblock\',\'<h3>\');"><h3 style="margin: 0px; padding: 0px;">Heading 3</h3></a><a href="javascript:;" onclick="comm._select(\'formatblock\',\'<h2>\');"><h2 style="margin: 0px; padding: 0px;">Heading 2</h2></a><a href="javascript:;" onclick="comm._select(\'formatblock\',\'<h1>\');"><h1 style="margin: 0px; padding: 0px;">Heading 1</h1></a></div></li>');
+	// custom menu
+	<!-- IF S_EXP -->
+	document.writeln('<li><a id="custommenu" rel="m3" href="#">'+ lang_s[3] +'</a><div id="m3" style="position:absolute; display:none;">');
+	for (i=0;i<l_sent.length;i++){
+		document.writeln('<a href="javascript:;" onclick="comm._HTML(\' \',\' \',\'' + l_sent[i] + '\');">' + l_sent[i] + '</a>');
+		}
+	document.writeln('</a></div></li>');
+	<!-- ENDIF -->
+	document.writeln('</ul></div>');
+	<!-- ENDIF -->
+	</script>
+	<div id="Colorpalettehs" style="position:absolute; display:none;background-color:#EFEFEF;border:1px solid #598FEF;padding:2px;position:absolute;width:110px;">
+	<script language="JavaScript">comm._palette('hilitecolor');</script>
+	</div>
+	
+	<div id="Colorpalettefs" style="position:absolute; display:none;background-color:#EFEFEF;border:1px solid #598FEF;padding:2px;position:absolute;width:110px;">
+	<script language="JavaScript">comm._palette('forecolor');</script>
+	</div>
+	<iframe src ="{SITE_FULL_URL}/imguploader.php" id="uploaderrel" width="250px" height="100px" scrolling="no" frameborder="0" style="position:absolute; display:none;background:#fff;border:#eee 4px solid"></iframe>
+	<script type="text/javascript">
+	document.writeln('<iframe id="box" scrolling="auto"  style="border:1px solid #a9b8c2;width: 100%; height: 253px;" frameborder="0"></iframe>');
+	document.writeln('<textarea id="box_text" style="display:none;width: 99.6%; height: 249px;background:'+ lang_s[6] + ';" cols="60" rows="10" class="inputbox" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);"></textarea>');	
+	bbcode.Start();
+	document.writeln('<textarea <!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->name="signature" id="signature" <!-- ELSE -->name="message" id="message"<!-- ENDIF --> rows="15" cols="76" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" class="inputbox" style="display:none;"></textarea>');
+	document.writeln('</div>');
+	dropdowncontent.init("Colorpalettef", "right-bottom", 500, "click");
+	dropdowncontent.init("Colorpaletteh", "right-bottom", 500, "click");
+	dropdowncontent.init("fontsize", "right-bottom", 500, "click");
+	dropdowncontent.init("fontfamily", "right-bottom", 500, "click");
+	dropdowncontent.init("headingmenu", "right-bottom", 500, "click");
+	dropdowncontent.init("uploader", "right-bottom", 500, "click");
+	<!-- IF S_EXP -->
+	dropdowncontent.init("custommenu", "right-bottom", 500, "click");
+	<!-- ENDIF -->
+	var panels = new Array('options-panel', 'attach-panel', 'poll-panel');
+	var show_panel = 'options-panel';
+	</script>
+	<noscript>
+			<textarea <!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->name="signature" id="signature" style="height: 9em;"<!-- ELSE -->name="message" id="message"<!-- ENDIF --> rows="15" cols="76" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" class="inputbox">{MESSAGE}{DRAFT_MESSAGE}{SIGNATURE}</textarea>
+	</noscript>
+	</div>
+<!-- ELSE -->
+	<!-- INCLUDE posting_buttons.html -->
+	<div id="smiley-box">
+	<!-- IF S_SMILIES_ALLOWED and .smiley -->
+		<strong>{L_SMILIES}</strong><br />
+		<!-- BEGIN smiley -->
+		<a href="#" onclick="insert_text('{smiley.A_SMILEY_CODE}', true); return false;"><img src="{smiley.SMILEY_IMG}" width="{smiley.SMILEY_WIDTH}" height="{smiley.SMILEY_HEIGHT}" alt="{smiley.SMILEY_CODE}" title="{smiley.SMILEY_DESC}" /></a>
+		<!-- END smiley -->
+		<!-- ENDIF -->
+		<!-- IF S_SHOW_SMILEY_LINK and S_SMILIES_ALLOWED-->
+		<br /><a href="{U_MORE_SMILIES}" onclick="popup(this.href, 300, 350, '_phpbbsmilies'); return false;">{L_MORE_SMILIES}</a>
+		<!-- ENDIF -->
+		<!-- IF S_EDIT_DRAFT || S_DISPLAY_REVIEW -->
+		<!-- IF S_DISPLAY_REVIEW --><hr /><!-- ENDIF -->
+		<!-- IF S_EDIT_DRAFT --><strong><a href="{S_UCP_ACTION}">{L_BACK_TO_DRAFTS}</a></strong><!-- ENDIF -->
+		<!-- IF S_DISPLAY_REVIEW --><strong><a href="#review">{L_TOPIC_REVIEW}</a></strong><!-- ENDIF -->
+	<!-- ENDIF -->
+	</div>
+
+	<div id="message-box">
+		<textarea <!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->name="signature" id="signature" style="height: 9em;"<!-- ELSE -->name="message" id="message"<!-- ENDIF --> rows="15" cols="76" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" class="inputbox">{MESSAGE}{DRAFT_MESSAGE}{SIGNATURE}</textarea>
+	</div>
+<!-- ENDIF -->

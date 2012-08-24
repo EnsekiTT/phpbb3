@@ -920,6 +920,8 @@ function display_custom_bbcodes()
 	$db->sql_freeresult($result);
 }
 
+display_smiley_wysiwyg();
+
 /**
 * Display reasons
 */
@@ -1339,5 +1341,40 @@ function get_user_avatar($avatar, $avatar_type, $avatar_width, $avatar_height, $
 	$avatar_img .= $avatar;
 	return '<img src="' . (str_replace(' ', '%20', $avatar_img)) . '" width="' . $avatar_width . '" height="' . $avatar_height . '" alt="' . ((!empty($user->lang[$alt])) ? $user->lang[$alt] : $alt) . '" />';
 }
-
+function display_smiley_wysiwyg()
+{
+  global $db, $template, $config;
+  
+  $sql = 'SELECT *
+          FROM ' . SMILIES_TABLE . '
+          ORDER BY smiley_order';
+  $result = $db->sql_query($sql, 86400);
+  
+  $smilies = array();
+  while ($row = $db->sql_fetchrow($result))
+    {
+      if (empty($smilies[$row['smiley_url']]))
+        {
+          $smilies[$row['smiley_url']] = $row;
+        }
+    }
+  $db->sql_freeresult($result);
+  
+  if (sizeof($smilies))
+    {
+      foreach ($smilies as $row)
+        {
+          $template->assign_block_vars('smiley_wysiwyg', array(
+                                                               'SMILEY_CODE'   => $row['code'],
+                                                               'A_SMILEY_CODE'   => addslashes($row['code']),
+                                                               'SMILEY_IMG'   => $row['smiley_url'],
+                                                               ));
+        }
+      
+      $template->assign_vars(array(
+                                   'SMILEY_PATH'   => $config['smilies_path'] . '/',
+             'SMILEY_TOTAL'   => sizeof($smilies),
+                                   ));
+    }
+}
 ?>
