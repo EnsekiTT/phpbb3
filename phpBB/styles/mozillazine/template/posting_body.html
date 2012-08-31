@@ -293,11 +293,6 @@
 	</tr>
 <!-- ENDIF -->
 
-		<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
-		<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
-		<!-- ENDIF -->
-
-
 <!-- IF S_SHOW_ATTACH_BOX or S_SHOW_POLL_BOX -->
 	<tr>
 		<td class="cat" colspan="2" align="center">
@@ -321,6 +316,11 @@
 	<!-- ENDIF -->
 <!-- ENDIF -->
 
+
+    <!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+    <!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+    <!-- ENDIF -->
+
 <tr>
 	<td class="cat" colspan="2" align="center">{S_HIDDEN_FIELDS}
 		<input class="btnlite" type="submit" tabindex="10" name="preview" value="{L_PREVIEW}" />
@@ -333,6 +333,7 @@
 	</td>
 </tr>
 </table>
+
 <!-- IF not S_PRIVMSGS -->
 	{S_FORM_TOKEN}
 	</form>

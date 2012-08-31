@@ -680,3 +680,11 @@ pre {
 .nowrap {
 	white-space: nowrap;
 }
+
+#captcha{ 
+  text-align: center;
+}
+
+#confirm_code{ 
+              font-size: 1.5em;
+ }

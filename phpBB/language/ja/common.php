@@ -125,8 +125,8 @@ $lang = array_merge($lang, array(
 	'COLOUR_SWATCH'			=> '色のサンプル',
 	'COMMA_SEPARATOR'		=> ', ',	// Used in pagination of ACP & prosilver, use localised comma if appropriate, eg: Ideographic or Arabic
 	'CONFIRM'				=> '確認',
-	'CONFIRM_CODE'			=> 'CAPTCHA 認証コード',
-	'CONFIRM_CODE_EXPLAIN'	         => '表示されたコードを正確に入力してください。各文字は大文字・小文字の区別があります。',
+	'CONFIRM_CODE'			=> '認証コード',
+	'CONFIRM_CODE_EXPLAIN'	         => '上の画象に表示されている文字を入力してください。各文字は大文字・小文字の区別があります。',
 	'CONFIRM_CODE_WRONG' => '入力した 認証コード が間違っています',
 	'CONFIRM_OPERATION'		=> '本当に実行してもよろしいですか？',
 	

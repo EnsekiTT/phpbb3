@@ -7,11 +7,20 @@
 
 	<fieldset class="fields2">
 <!-- ENDIF -->
-	<dl>
-		<dt><label for="confirm_code">{L_CONFIRM_CODE}:</label></dt>
+<tr id="captcha">
+	<td colspan=2>
 		<dd>{NIKITA_SP_IMAGE}</dd>
-		<dd><input type="text" class="inputbox autowidth" size="10" name="answer_field" value="" title="Проверочный код" /></dd>
-	</dl>
+  </td>
+</tr>
+<tr>
+  <td>
+		<dt><label id="confirm_code">{L_CONFIRM_CODE}:*</label></dt>
+		<dt><label>{L_CONFIRM_CODE_EXPLAIN}</label></dt>
+	</td>
+  <td>
+		<dd><input type="text" class="inputbox autowidth" size="10" name="answer_field" value="" title="Captcha" /></dd>
+  </td>
+</tr>
 <!-- IF S_TYPE == 1 -->
 	</fieldset>
 	<span class="corners-bottom"><span></span></span></div>
