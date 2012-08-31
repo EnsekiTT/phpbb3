@@ -344,12 +344,12 @@ td.profile {
 }
 
 .row1 {
-  background-color: #F3FFFD;
+  background-color: rgb(239, 239, 239);
 	padding: 4px;
 }
 
 .row2 {
-	background-color: #D3DFDD;
+	background-color: rgb(222, 227, 231);
 	padding: 4px;
 }
 
