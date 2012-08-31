@@ -458,7 +458,6 @@ class fulltext_native extends search_backend
 		$total_results = 0;
 		if ($this->obtain_ids($search_key, $total_results, $id_ary, $start, $per_page, $sort_dir) == SEARCH_RESULT_IN_CACHE)
 		{
-      
 			return $total_results;
 		}
 
@@ -470,7 +469,7 @@ class fulltext_native extends search_backend
 		$w_num = 0;
 
 		$sql_array = array(
-      'SELECT'	=> ($type == 'posts') ? 'p.post_id' : 'p.topic_id',
+			'SELECT'	=> ($type == 'posts') ? 'p.post_id' : 'p.topic_id',
 			'FROM'		=> array(
 				SEARCH_WORDMATCH_TABLE	=> array(),
 				SEARCH_WORDLIST_TABLE	=> array(),
@@ -563,7 +562,7 @@ class fulltext_native extends search_backend
 			{
 				$sql_where[] = "m$m_num.word_id = $subquery";
 			}
-      
+
 			$sql_array['FROM'][SEARCH_WORDMATCH_TABLE][] = 'm' . $m_num;
 
 			if ($title_match)
@@ -576,7 +575,6 @@ class fulltext_native extends search_backend
 				$sql_where[] = "m$m_num.post_id = m0.post_id";
 			}
 			$m_num++;
-
 		}
 
 		foreach ($this->must_not_contain_ids as $key => $subquery)
@@ -679,7 +677,7 @@ class fulltext_native extends search_backend
     }else{}
 
 		$sql_array['WHERE'] = implode(' AND ', $sql_where);
-    
+
 		$is_mysql = false;
 		// if the total result count is not cached yet, retrieve it from the db
 		if (!$total_results)
@@ -720,7 +718,7 @@ class fulltext_native extends search_backend
 					$result = $db->sql_query($sql);
 					$total_results = (int) $db->sql_fetchfield('total_results');
 					$db->sql_freeresult($result);
-          
+
 					if (!$total_results)
 					{
 						return false;
@@ -753,7 +751,7 @@ class fulltext_native extends search_backend
 		if ($left_join_topics)
 		{
 			$sql_array['LEFT_JOIN'][] = array(
-        'FROM'	=> array(TOPICS_TABLE => 't'),
+				'FROM'	=> array(TOPICS_TABLE => 't'),
 				'ON'	=> 'p.topic_id = t.topic_id'
 			);
 		}
@@ -764,7 +762,7 @@ class fulltext_native extends search_backend
 		unset($sql_where, $sql_sort, $group_by);
 
 		$sql = $db->sql_build_query('SELECT', $sql_array);
-    $result = $db->sql_query_limit($sql, $config['search_block_size'], $start);
+		$result = $db->sql_query_limit($sql, $config['search_block_size'], $start);
 
 		while ($row = $db->sql_fetchrow($result))
 		{
@@ -1347,7 +1345,7 @@ class fulltext_native extends search_backend
 			$db->sql_query($sql);
 		}
 
-		$this->destroy_cache(array_unique($word_texts), $author_ids);
+		$this->destroy_cache(array_unique($word_texts), array_unique($author_ids));
 	}
 
 	/**
@@ -1474,17 +1472,8 @@ class fulltext_native extends search_backend
 	{
 		global $db;
 
-		$sql = 'SELECT COUNT(*) as total_words
-			FROM ' . SEARCH_WORDLIST_TABLE;
-		$result = $db->sql_query($sql);
-		$this->stats['total_words'] = (int) $db->sql_fetchfield('total_words');
-		$db->sql_freeresult($result);
-
-		$sql = 'SELECT COUNT(*) as total_matches
-			FROM ' . SEARCH_WORDMATCH_TABLE;
-		$result = $db->sql_query($sql);
-		$this->stats['total_matches'] = (int) $db->sql_fetchfield('total_matches');
-		$db->sql_freeresult($result);
+		$this->stats['total_words']		= $db->get_estimated_row_count(SEARCH_WORDLIST_TABLE);
+		$this->stats['total_matches']	= $db->get_estimated_row_count(SEARCH_WORDMATCH_TABLE);
 	}
 
 	/**
