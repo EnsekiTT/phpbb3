@@ -276,6 +276,9 @@
 			<!-- ENDIF -->
 		<!-- ENDIF -->
 		</table>
+    <!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+    <!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+    <!-- ENDIF -->
 	</td>
 </tr>
 
@@ -315,11 +318,6 @@
 		</tr>
 	<!-- ENDIF -->
 <!-- ENDIF -->
-
-
-    <!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
-    <!-- INCLUDE {CAPTCHA_TEMPLATE} -->
-    <!-- ENDIF -->
 
 <tr>
 	<td class="cat" colspan="2" align="center">{S_HIDDEN_FIELDS}

@@ -1,3 +1,6 @@
+<tr>
+  <th colspan="2" valign="middle">{L_CONFIRM_CODE}</th>
+</tr>
 <!-- IF S_TYPE == 1 -->
 <div class="panel">
 	<div class="inner"><span class="corners-top"><span></span></span>
@@ -8,16 +11,16 @@
 	<fieldset class="fields2">
 <!-- ENDIF -->
 <tr id="captcha">
-	<td colspan=2>
+	<td class="row1" colspan=2>
 		<dd>{NIKITA_SP_IMAGE}</dd>
   </td>
 </tr>
 <tr>
-  <td>
+  <td class="row1">
 		<dt><label id="confirm_code">{L_CONFIRM_CODE}:*</label></dt>
 		<dt><label>{L_CONFIRM_CODE_EXPLAIN}</label></dt>
 	</td>
-  <td>
+  <td class="row2">
 		<dd><input type="text" class="inputbox autowidth" size="10" name="answer_field" value="" title="Captcha" /></dd>
   </td>
 </tr>

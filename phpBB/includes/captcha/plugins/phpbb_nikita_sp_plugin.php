@@ -34,7 +34,7 @@ class phpbb_nikita_sp extends phpbb_default_captcha
 	function phpbb_nikita_sp(){
 		global $config;
 		session_start();
-		$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../';
+		$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '';
 		$this->nikita_sp_code = $_SESSION['captcha_keystring'];
 		$this->nikita_sp_image = '<img src="'.$phpbb_root_path.'kcaptcha/index.php?'.session_name().'='.session_id().'" alt="KCaptcha by Nikita_Sp" />';
 		$this->nikita_sp_answer = request_var('answer_field', '');

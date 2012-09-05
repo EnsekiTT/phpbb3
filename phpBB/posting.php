@@ -183,7 +183,9 @@ if ($config['enable_post_confirm'] && !$user->data['is_registered'])
 {
 	include($phpbb_root_path . 'includes/captcha/captcha_factory.' . $phpEx);
 	$captcha =& phpbb_captcha_factory::get_instance($config['captcha_plugin']);
-	$captcha->init(CONFIRM_POST);
+  if(!$preview){
+    $captcha->init(CONFIRM_POST);
+  }
 }
 
 // Use post_row values in favor of submitted ones...
@@ -1169,6 +1171,7 @@ if ($submit || $preview || $refresh)
 // Preview
 if (!sizeof($error) && $preview)
 {
+  $captcha->reset();
 	$post_data['post_time'] = ($mode == 'edit') ? $post_data['post_time'] : $current_time;
 
 	$preview_message = $message_parser->format_display($post_data['enable_bbcode'], $post_data['enable_urls'], $post_data['enable_smilies'], false);
