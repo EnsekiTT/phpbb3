@@ -191,6 +191,7 @@ class acp_board
 						'min_post_chars'		=> array('lang' => 'MIN_CHAR_LIMIT',		'validate' => 'int:1',		'type' => 'text:4:6', 'explain' => true),
 						'max_post_smilies'		=> array('lang' => 'SMILIES_LIMIT',			'validate' => 'int:0',		'type' => 'text:4:4', 'explain' => true),
 						'max_post_urls'			=> array('lang' => 'MAX_POST_URLS',			'validate' => 'int:0',		'type' => 'text:5:4', 'explain' => true),
+						'max_guest_post_urls'			=> array('lang' => 'MAX_GUEST_POST_URLS',			'validate' => 'int:0',		'type' => 'text:5:4', 'explain' => true),
 						'max_post_font_size'	=> array('lang' => 'MAX_POST_FONT_SIZE',	'validate' => 'int:0',		'type' => 'text:5:4', 'explain' => true, 'append' => ' %'),
 						'max_quote_depth'		=> array('lang' => 'QUOTE_DEPTH_LIMIT',		'validate' => 'int:0',		'type' => 'text:4:4', 'explain' => true),
 						'max_post_img_width'	=> array('lang' => 'MAX_POST_IMG_WIDTH',	'validate' => 'int:0',		'type' => 'text:5:4', 'explain' => true, 'append' => ' ' . $user->lang['PIXEL']),

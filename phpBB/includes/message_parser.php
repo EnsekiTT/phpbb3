@@ -1166,11 +1166,10 @@ class parse_message extends bbcode_firstpass
 		if ($allow_magic_url)
 		{
 			$this->magic_url(generate_board_url());
-
-			if ($config['max_' . $mode . '_urls'])
-			{
-				$num_urls += preg_match_all('#\<!-- ([lmwe]) --\>.*?\<!-- \1 --\>#', $this->message, $matches);
-			}
+      if ($config['max_' . $mode . '_urls'])
+        {
+          $num_urls += preg_match_all('#\<!-- ([lmwe]) --\>.*?\<!-- \1 --\>#', $this->message, $matches);
+        }
 		}
 
 		// Check for "empty" message. We do not check here for maximum length, because bbcode, smilies, etc. can add to the length.
@@ -1182,11 +1181,20 @@ class parse_message extends bbcode_firstpass
 		}
 
 		// Check number of links
-		if ($config['max_' . $mode . '_urls'] && $num_urls > $config['max_' . $mode . '_urls'])
-		{
-			$this->warn_msg[] = sprintf($user->lang['TOO_MANY_URLS'], $config['max_' . $mode . '_urls']);
-			return (!$update_this_message) ? $return_message : $this->warn_msg;
-		}
+
+    if ($user->data[user_type] == '2'){
+      if ($config['max_guest_' . $mode .'_urls'] && $num_urls > $config['max_guest_' . $mode . '_urls'])
+        {
+          $this->warn_msg[] = sprintf($user->lang['TOO_MANY_URLS'], $config['max_guest_' . $mode . '_urls']);
+          return (!$update_this_message) ? $return_message : $this->warn_msg;
+        }
+    }else{
+      if ($config['max_' . $mode . '_urls'] && $num_urls > $config['max_' . $mode . '_urls'])
+        {
+          $this->warn_msg[] = sprintf($user->lang['TOO_MANY_URLS'], $config['max_' . $mode . '_urls']);
+          return (!$update_this_message) ? $return_message : $this->warn_msg;
+        }
+    }
 
 		if (!$update_this_message)
 		{
