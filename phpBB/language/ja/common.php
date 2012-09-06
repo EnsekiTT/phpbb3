@@ -196,6 +196,7 @@ $lang = array_merge($lang, array(
 	'FORUMS'				=> 'フォーラム',
 	'FORUMS_MARKED'			=> 'フォーラムを既読にしました',
 	'FORUM_CAT'				=> 'カテゴリ',
+  'FORUM_GUIDE'     => 'フォーラムの利用について',
 	'FORUM_INDEX'			=> '掲示板トップ',
 	'FORUM_LINK'			=> 'リンク',
 	'FORUM_LOCATION'		=> '位置',
