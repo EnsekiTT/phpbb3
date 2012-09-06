@@ -316,6 +316,7 @@ td {
 }
 td.profile {
 	padding: 4px;
+  width: 160px;
 }
 
 .tablebg {
