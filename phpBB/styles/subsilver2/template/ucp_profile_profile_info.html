@@ -12,42 +12,69 @@
 <tr> 
 	<td class="row1" colspan="2"><span class="gensmall">{L_PROFILE_INFO_NOTICE}</span></td>
 </tr>
+
+	<!-- IF not S_ICQ_DISABLED -->
 <tr> 
-	<td class="row1" width="35%"><b class="genmed">{L_UCP_ICQ}: </b></td>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_ICQ}:<!-- IF S_ICQ_REQUIRED --> *<!-- ENDIF --> </b></td>
 	<td class="row2"><input class="post" type="text" name="icq" size="30" maxlength="15" value="{ICQ}" /></td>
 </tr>
+	<!-- ENDIF -->
+
+	<!-- IF not S_AIM_DISABLED -->
 <tr> 
-	<td class="row1" width="35%"><b class="genmed">{L_UCP_AIM}: </b></td>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_AIM}:<!-- IF S_AIM_REQUIRED --> *<!-- ENDIF --> </b></td>
 	<td class="row2"><input class="post" type="text" name="aim" size="30" maxlength="255" value="{AIM}" /></td>
 </tr>
+	<!-- ENDIF -->
+
+	<!-- IF not S_MSN_DISABLED -->
 <tr> 
-	<td class="row1" width="35%"><b class="genmed">{L_UCP_MSNM}: </b></td>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_MSNM}:<!-- IF S_MSN_REQUIRED --> *<!-- ENDIF --> </b></td>
 	<td class="row2"><input class="post" type="text" name="msn" size="30" maxlength="255" value="{MSN}" /></td>
 </tr>
+	<!-- ENDIF -->
+
+	<!-- IF not S_YIM_DISABLED -->
 <tr> 
-	<td class="row1" width="35%"><b class="genmed">{L_UCP_YIM}: </b></td>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_YIM}:<!-- IF S_YIM_REQUIRED --> *<!-- ENDIF --> </b></td>
 	<td class="row2"><input class="post" type="text" name="yim" size="30" maxlength="255" value="{YIM}" /></td>
 </tr>
+	<!-- ENDIF -->
+
+	<!-- IF not S_JABBER_DISABLED -->
 <tr> 
-	<td class="row1" width="35%"><b class="genmed">{L_UCP_JABBER}: </b></td>
+	<td class="row1" width="35%"><b class="genmed">{L_UCP_JABBER}:<!-- IF S_JABBER_REQUIRED --> *<!-- ENDIF --> </b></td>
 	<td class="row2"><input class="post" type="text" name="jabber" size="30" maxlength="255" value="{JABBER}" /></td>
 </tr>
+	<!-- ENDIF -->
+
+	<!-- IF not S_WEBSITE_DISABLED -->
 <tr> 
-	<td class="row1" width="35%"><b class="genmed">{L_WEBSITE}: </b></td>
+	<td class="row1" width="35%"><b class="genmed">{L_WEBSITE}:<!-- IF S_WEBSITE_REQUIRED --> *<!-- ENDIF --> </b></td>
 	<td class="row2"><input class="post" type="text" name="website" size="30" maxlength="255" value="{WEBSITE}" /></td>
 </tr>
+	<!-- ENDIF -->
+
+	<!-- IF not S_LOCATION_DISABLED -->
 <tr> 
-	<td class="row1" width="35%"><b class="genmed">{L_LOCATION}: </b></td>
+	<td class="row1" width="35%"><b class="genmed">{L_LOCATION}:<!-- IF S_LOCATION_REQUIRED --> *<!-- ENDIF --> </b></td>
 	<td class="row2"><input class="post" type="text" name="location" size="30" maxlength="100" value="{LOCATION}" /></td>
 </tr>
+	<!-- ENDIF -->
+
+	<!-- IF not S_OCCUPATION_DISABLED -->
 <tr> 
-	<td class="row1" width="35%"><b class="genmed">{L_OCCUPATION}: </b></td>
+	<td class="row1" width="35%"><b class="genmed">{L_OCCUPATION}:<!-- IF S_OCCUPATION_REQUIRED --> *<!-- ENDIF --> </b></td>
 	<td class="row2"><textarea class="post" name="occupation" rows="3" cols="30">{OCCUPATION}</textarea></td>
 </tr>
+	<!-- ENDIF -->
+
+	<!-- IF not S_INTERESTS_DISABLED -->
 <tr> 
-	<td class="row1" width="35%"><b class="genmed">{L_INTERESTS}: </b></td>
+	<td class="row1" width="35%"><b class="genmed">{L_INTERESTS}:<!-- IF S_INTERESTS_REQUIRED --> *<!-- ENDIF --> </b></td>
 	<td class="row2"><textarea class="post" name="interests" rows="3" cols="30">{INTERESTS}</textarea></td>
 </tr>
+	<!-- ENDIF -->
 <!-- IF S_BIRTHDAYS_ENABLED -->
 	<tr> 
 		<td class="row1" width="35%"><b class="genmed">{L_BIRTHDAY}: </b><br /><span class="gensmall">{L_BIRTHDAY_EXPLAIN}</span></td>
