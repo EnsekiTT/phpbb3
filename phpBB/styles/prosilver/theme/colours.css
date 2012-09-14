@@ -1021,3 +1021,11 @@ input.search {
 input.disabled {
 	color: #666666;
 }
+blockquote.editor{
+display:block;
+padding-left: 3em;
+margin:0;
+background-image:none;
+background:none;
+border:none;
+}

@@ -669,6 +669,14 @@ pre {
 .username-coloured {
 	font-weight: bold;
 }
+blockquote.editor{
+display:block;
+padding-left: 3em;
+margin:0;
+background-image:none;
+background:none;
+border:none;
+}
 
 blockquote.editor{
 display:block;

@@ -1393,30 +1393,30 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 	$message = bbcode_nl2br($message);
 	$message = smiley_text($message);
-  $matchs = array (
-                   '#\[img([^\]]*)\]([^\]]*)\[\/img([^\]]*)\]#is' => '<img src="\\2" />',
-                   '#\[color=([^\]]*)\]#is'				  => '<span style="color:\\1;">',
-                   '#\[highlight=([^\]]*)\]#is'				  => '<span style="background-color:\\1;">',
-                   '#\[font=([^\]]*)\]#is'				  => '<span style="font-family:\\1;">',
-                   '#\[\/(font|color|size|highlight)([^\]]*)\]#is'    => '</span>',
-                   '#\[size=1([^\]]*)\]#is'    => '[size=85]',
-                   '#\[size=2([^\]]*)\]#is'    => '[size=100]',
-                   '#\[size=3([^\]]*)\]#is'    => '[size=150]',
-                   '#\[size=4([^\]]*)\]#is'    => '[size=175]',
-                   '#\[size=5([^\]]*)\]#is'    => '[size=200]',
-                   '#\[size=6([^\]]*)\]#is'    => '[size=210]',
-                   '#\[size=7([^\]]*)\]#is'    => '[size=220]',
-                   '#\[size=([0-9]{2,3}+)([^\]]*)\]#is'    => '<span style="font-size: \\1%; line-height: 116%;">',
-                   '#\[table\]#is'    => '<table style="width: 100%;table-layout:fixed;padding: 0px;border:1px dotted gray;">',
-                   '#\[td\]#is'    => '<td style="font-size: 20px; display:table-cell;padding:1px;vertical-align:inherit;border:1px dotted #CCCCCC;">',
-                   '#\[tr\]#is'    => '<tr>',
-                   '#\[\/tr\]#is'    => '</tr>',
-                   '#\[\/td\]#is'    => '</td>',
-                   '#\[\/table\]#is'    => '</table>',
-                   '#\[(indent|blockquote)\]#is'    => '<blockquote class="editor">',
-                   '#\[\/(indent|blockquote)\]#is'    => '</blockquote>',			
-                   '#\[size=([^\]]*)\]#is'    => '',
-                   );
+	$matchs = array (
+			'#\[img([^\]]*)\]([^\]]*)\[\/img([^\]]*)\]#is' => '<img src="\\2" />',
+			'#\[color=([^\]]*)\]#is'				  => '<span style="color:\\1;">',
+			'#\[highlight=([^\]]*)\]#is'				  => '<span style="background-color:\\1;">',
+			'#\[font=([^\]]*)\]#is'				  => '<span style="font-family:\\1;">',
+			'#\[\/(font|color|size|highlight)([^\]]*)\]#is'    => '</span>',
+			'#\[size=1([^\]]*)\]#is'    => '[size=85]',
+			'#\[size=2([^\]]*)\]#is'    => '[size=100]',
+			'#\[size=3([^\]]*)\]#is'    => '[size=150]',
+			'#\[size=4([^\]]*)\]#is'    => '[size=175]',
+			'#\[size=5([^\]]*)\]#is'    => '[size=200]',
+			'#\[size=6([^\]]*)\]#is'    => '[size=210]',
+			'#\[size=7([^\]]*)\]#is'    => '[size=220]',
+			'#\[size=([0-9]{2,3}+)([^\]]*)\]#is'    => '<span style="font-size: \\1%; line-height: 116%;">',
+			'#\[table\]#is'    => '<table style="width: 100%;table-layout:fixed;padding: 0px;border:1px dotted gray;">',
+			'#\[td\]#is'    => '<td style="font-size: 20px; display:table-cell;padding:1px;vertical-align:inherit;border:1px dotted #CCCCCC;">',
+			'#\[tr\]#is'    => '<tr>',
+			'#\[\/tr\]#is'    => '</tr>',
+			'#\[\/td\]#is'    => '</td>',
+			'#\[\/table\]#is'    => '</table>',
+			'#\[(indent|blockquote)\]#is'    => '<blockquote class="editor">',
+			'#\[\/(indent|blockquote)\]#is'    => '</blockquote>',			
+			'#\[size=([^\]]*)\]#is'    => '',
+			);
 		$message = preg_replace(array_keys($matchs), array_values($matchs), $message);
   $message = bug_convert($message);
   $message = bug_convert_jp($message);

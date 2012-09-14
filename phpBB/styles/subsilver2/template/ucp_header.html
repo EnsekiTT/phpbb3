@@ -2,7 +2,7 @@
 
 
 <!-- IF S_SHOW_PM_BOX and S_POST_ACTION -->
-	<form action="{S_POST_ACTION}" method="post" name="postform"{S_FORM_ENCTYPE}>
+<form action="{S_POST_ACTION}" method="post" onsubmit="Gettext('message',true)" name="postform"{S_FORM_ENCTYPE}>
 <!-- ENDIF -->
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
 <tr>
@@ -160,4 +160,4 @@
 
 </td>
 <td><img src="images/spacer.gif" width="4" alt="" /></td>
-<td width="80%" valign="top"><!-- IF not S_PRIVMSGS or S_SHOW_DRAFTS --><form name="ucp" id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}><!-- ENDIF -->
+<td width="80%" valign="top"><!-- IF not S_PRIVMSGS or S_SHOW_DRAFTS --><form name="ucp" id="ucp" method="post" onsubmit="Gettext('signature',true)"  action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}><!-- ENDIF -->

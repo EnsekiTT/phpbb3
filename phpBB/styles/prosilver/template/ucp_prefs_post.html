@@ -16,6 +16,13 @@
 		</dd>
 	</dl>
 	<dl>
+		<dt><label for="skype">{L_UCP_WYSIWYG}:</label><br /><span>{L_WYSIWYG_EXPLAIN}</span></dt>
+		<dd>
+			<label for="wysiwyg_status1"><input type="radio" name="wysiwyg_status" id="wysiwyg_status1" value="1"<!-- IF S_WYSIWYG_STATUS --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label for="wysiwyg_status0"><input type="radio" name="wysiwyg_status" id="wysiwyg_status0" value="0"<!-- IF not S_WYSIWYG_STATUS --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+        </dd>
+	</dl>
+	<dl>
 		<dt><label for="smilies1">{L_DEFAULT_SMILIES}:</label></dt>
 		<dd>
 			<label for="smilies1"><input type="radio" name="smilies" id="smilies1" value="1"<!-- IF S_SMILIES --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
