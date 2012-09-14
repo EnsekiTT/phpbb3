@@ -56,7 +56,7 @@ $lang = array_merge($lang, array(
 
 	'SFS_SUBMIT'			=> 'Submit profile information to <a href="http://www.stopforumspam.com/">Stop Forum Spam</a><br /><br /><strong>Note that submitting users for something other than spam is not allowed and can result in a ban from Stop Forum Spam.</strong>',
 	'SIGNATURE_DISABLED'	=> 'You are not allowed to use a signature.',
-	'SPAM_DENIED'			=> 'このメッセージは、スパムとして判断された為に拒否されました。',
+	'SPAM_DENIED'			=> 'This message was flagged as spam and has been denied.',
 	'STOP_FORUM_SPAM'		=> 'Stop Forum Spam',
 
 	'USER_FLAG'				=> 'Flag',

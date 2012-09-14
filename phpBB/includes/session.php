@@ -1614,6 +1614,7 @@ class user extends session
 		$this->add_lang($lang_set);
 		unset($lang_set);
 
+
 		if (!empty($_GET['style']) && $auth->acl_get('a_styles') && !defined('ADMIN_START'))
 		{
 			global $SID, $_EXTRA_URL;
@@ -1623,11 +1624,10 @@ class user extends session
 			$_EXTRA_URL = array('style=' . $style);
 		}
 		else
-		{
+		{      
 			// Set up style
 			$style = ($style) ? $style : ((!$config['override_user_style']) ? $this->data['user_style'] : $config['default_style']);
 		}
-
 		$sql = 'SELECT s.style_id, t.template_storedb, t.template_path, t.template_id, t.bbcode_bitfield, t.template_inherits_id, t.template_inherit_path, c.theme_path, c.theme_name, c.theme_storedb, c.theme_id, i.imageset_path, i.imageset_id, i.imageset_name
 			FROM ' . STYLES_TABLE . ' s, ' . STYLES_TEMPLATE_TABLE . ' t, ' . STYLES_THEME_TABLE . ' c, ' . STYLES_IMAGESET_TABLE . " i
 			WHERE s.style_id = $style
