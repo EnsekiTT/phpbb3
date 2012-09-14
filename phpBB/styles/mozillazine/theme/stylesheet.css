@@ -319,11 +319,6 @@ td.profile {
   width: 160px;
 }
 
-td.profile img{ 
-  max-width: 120px;
-  height: auto;
-}
-
 .tablebg {
 	background-color: #A9B8C2;
 }
