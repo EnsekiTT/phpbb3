@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/69/trunk/contrib
+END
+license.txt
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/69/trunk/contrib/license.txt
+END
+modx.prosilver.en.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/69/trunk/contrib/modx.prosilver.en.xsl
+END
+update_0_0_5_to_0_0_6.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/69/trunk/contrib/update_0_0_5_to_0_0_6.xml
+END
+update_0_0_6_to_0_0_7.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/69/trunk/contrib/update_0_0_6_to_0_0_7.xml
+END
+update_0_0_7_to_0_0_8.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/69/trunk/contrib/update_0_0_7_to_0_0_8.xml
+END
+update_0_0_8_to_0_0_9.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/77/trunk/contrib/update_0_0_8_to_0_0_9.xml
+END

@@ -1,0 +1,64 @@
+<!-- INCLUDE overall_header.html -->	
+<a name="maincontent"></a>							
+<h1>{L_ACP_WYSIWYG}</h1>								
+<form id="acp_hello" method="post" action="{U_ACTION}">
+	<fieldset>
+		<legend>{L_ACP_WYSIWYG}</legend>
+		<dl>
+		<dt><label for="wysiwyg_show_radio">{L_ACP_WYSIWYG_SHOW}:</label><br />{L_ACP_WYSIWYG_SHOW_DESC}</dt>
+			<dd><label><input type="radio" class="radio" name="wysiwyg_show_radio" value="1" id="wysiwyg_show_radio"<!-- IF S_WYSIWYG_SHOW  --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="wysiwyg_show_radio" value="0" id="wysiwyg_show_radio"<!-- IF S_WYSIWYG_DSHOW  --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+		</dl>
+		<dl>
+		<dt><label for="bbcode_image_show_radio">{L_ACP_BBCODE_IMAGE_SHOW}:</label><BR />{L_ACP_BBCODE_IMAGE_SHOW_DESC}</dt>
+			<dd><label><input type="radio" class="radio" name="bbcode_image_show_radio" value="1" id="bbcode_image_show_radio"<!-- IF S_BBCODE_IMAGE_SHOW  --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="bbcode_image_show_radio" value="0" id="bbcode_image_show_radio"<!-- IF S_BBCODE_IMAGE_DSHOW  --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+		</dl>
+		<dl>
+		<dt><label for="link_p_radio">{L_ACP_LINK_P}:</label><br />{L_ACP_LINK_P_DESC}</dt>
+			<dd><label><input type="radio" class="radio" name="link_p_radio" value="1" id="link_p_radio"<!-- IF S_LINK_P  --> checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="link_p_radio" value="0" id="link_p_radio"<!-- IF S_LINK_PD  --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+		</dd>
+		</dl>
+		<dl>
+		<dt><label for="wysiwyg_bg">{L_ACP_WYSIWYG_BG}:</label></dt>
+			<dd><input type="text" class="input" name="wysiwyg_bg" value="{S_WYSIWYG_BG}" id="wysiwyg_bg" />
+		</dd>
+		</dl>
+		<dl>
+		<dt><label for="wysiwyg_color">{L_ACP_WYSIWYG_COLOR}:</label></dt>
+			<dd><input type="text" class="input" name="wysiwyg_color" value="{S_WYSIWYG_COLOR}" id="wysiwyg_color" />
+		</dd>
+		</dl>
+		<dl>
+		<dt><label for="wysiwyg_fonts">{L_ACP_WYSIWYG_FONTS}:</label><BR />{L_ACP_WYSIWYG_FONTS_DESC}</dt>
+			<dd><textarea class="input" name="wysiwyg_fonts" id="wysiwyg_fonts" style="height:12em;font-size:14px;">{S_WYSIWYG_FONTS}</textarea>
+		</dd>
+		</dl>
+				<dl>
+		<dt><label for="EXP">{L_ACP_WYSIWYG_CUS_TITLE}:</label></dt>
+			<dd><input type="text" class="input" name="EXP" value="{S_EXP}" id="EXP" />
+		</dd>
+		</dl>
+		<dl>
+		<dt><label for="wysiwyg_exp">{L_ACP_WYSIWYG_CUS}:</label><BR />{L_ACP_WYSIWYG_CUS_DESC}</dt>
+			<dd><textarea class="input" name="wysiwyg_exp" id="wysiwyg_exp" style="height:12em;font-size:14px;">{S_WYSIWYG_EXP}</textarea>
+		</dd>
+		</dl>
+		<dl>
+		<dt><label for="wdir">{L_ACP_WYSIWYG_DIR}:</label><br />{L_ACP_WYSIWYG_DIR_DESC}</dt>
+			<dd><select id="wdir" name="wdir">
+				<option value="ltr">{L_ACP_WYSIWYG_DIR_LTR}</option>
+				<option value="rtl">{L_ACP_WYSIWYG_DIR_RTL}</option>
+			</select>
+		</dd>
+		</dl>
+	</fieldset>
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />
+	</p>
+</form>
+				
+<!-- INCLUDE overall_footer.html -->
