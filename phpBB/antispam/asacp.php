@@ -685,6 +685,26 @@ class antispam
 	}
 	//public static function spam_words($data, $post_count = false)
 
+  //Japanese word checker
+  public static function spam_words_jpn($data, $post_count = false, $flag_limit = false){
+    global $cache, $config, $db, $user;
+    if (!$config['asacp_enable'] || !$config['asacp_spam_words_enable']){
+      return false;
+    }
+    // Japanese word check
+    $messages = (!is_array($data)) ? array($data) : $data;
+
+    $ret = false;
+    foreach ($messages as $text){
+      if(mb_convert_kana($text, "C") == $text){
+        if(mb_convert_kana($text, "c") == $text){
+          $ret = true;
+        }
+      }
+    }
+    return $ret;
+  }
+
 	/**
 	* Akismet Operations
 	*

@@ -1028,6 +1028,18 @@ if ($submit || $preview || $refresh)
 			break;
 		}
 	}
+  if ($config['asacp_spam_words_posting_action'] && antispam::spam_words_jpn(array($message_parser->message))){
+    switch ($config['asacp_spam_words_posting_action']){
+    case 1:
+      $user->add_lang('mods/asacp');
+      antispam::add_log('LOG_SPAM_POST_DENIED', array($sc_title, $message_parser->message));
+      $error[] = $user->lang['SPAM_DENIED'];
+      break;
+    case 2:
+      $asacp_is_spam = true;
+      break;
+    }
+  }
 	// END Anti-Spam ACP
 	// Store message, sync counters
 	if (!sizeof($error) && $submit)
