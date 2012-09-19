@@ -131,6 +131,7 @@ class KCAPTCHA{
 		}while($x>=$width-10); // while not fit in canvas
 
 		//noise
+    
 		$white=imagecolorallocate($font, 255, 255, 255);
 		$black=imagecolorallocate($font, 0, 0, 0);
 		for($i=0;$i<(($height-30)*$x)*$white_noise_density;$i++){
@@ -143,6 +144,14 @@ class KCAPTCHA{
 		
 		$center=$x/2;
 
+    $background_color[0] -= 140;
+    $background_color[1] -= 130;
+    $background_color[2] -= 120;
+    $foreground_color[0] += 120;
+    $foreground_color[1] += 130;
+    $foreground_color[2] += 140;
+
+
 		// credits. To remove, see configuration file
 		$img2=imagecreatetruecolor($width, $height+($show_credits?12:0));
 		$foreground=imagecolorallocate($img2, $foreground_color[0], $foreground_color[1], $foreground_color[2]);
@@ -152,19 +161,23 @@ class KCAPTCHA{
 		$credits=empty($credits)?$_SERVER['HTTP_HOST']:$credits;
 		imagestring($img2, 2, $width/2-imagefontwidth(2)*strlen($credits)/2, $height-2, $credits, $background);
 
-		// periods
-		$rand1=mt_rand(750000,1200000)/10000000;
-		$rand2=mt_rand(750000,1200000)/10000000;
-		$rand3=mt_rand(750000,1200000)/10000000;
-		$rand4=mt_rand(750000,1200000)/10000000;
+
+    // periods
+		$rand1=mt_rand(750000,1200000)/8000000;
+		$rand2=mt_rand(750000,1200000)/9000000;
+		$rand3=mt_rand(750000,1200000)/9900000;
+    $rand4=mt_rand(800000,1100000)/10000000;
+
 		// phases
-		$rand5=mt_rand(0,31415926)/10000000;
-		$rand6=mt_rand(0,31415926)/10000000;
+		$rand5=mt_rand(0,31415926)/1000000;
+		$rand6=mt_rand(0,31415926)/1000000;
 		$rand7=mt_rand(0,31415926)/10000000;
 		$rand8=mt_rand(0,31415926)/10000000;
+
 		// amplitudes
 		$rand9=mt_rand(330,420)/110;
 		$rand10=mt_rand(330,450)/100;
+
 
 		//wave distortion
 
