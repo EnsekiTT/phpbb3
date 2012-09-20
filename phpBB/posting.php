@@ -1231,7 +1231,9 @@ if ($submit || $preview || $refresh)
 // Preview
 if (!sizeof($error) && $preview)
 {
-  $captcha->reset();
+  if($user->data[user_id]==1 ){
+    $captcha->reset();
+  }
 	$post_data['post_time'] = ($mode == 'edit') ? $post_data['post_time'] : $current_time;
 
 	$preview_message = $message_parser->format_display($post_data['enable_bbcode'], $post_data['enable_urls'], $post_data['enable_smilies'], false);
