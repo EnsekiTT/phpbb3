@@ -144,12 +144,12 @@ class KCAPTCHA{
 		
 		$center=$x/2;
 
-    $background_color[0] -= 140;
-    $background_color[1] -= 130;
-    $background_color[2] -= 120;
-    $foreground_color[0] += 120;
-    $foreground_color[1] += 130;
-    $foreground_color[2] += 140;
+    $background_color[0] -= 180;
+    $background_color[1] -= 180;
+    $background_color[2] -= 180;
+    $foreground_color[0] += 180;
+    $foreground_color[1] += 180;
+    $foreground_color[2] += 180;
 
 
 		// credits. To remove, see configuration file
@@ -163,14 +163,14 @@ class KCAPTCHA{
 
 
     // periods
-		$rand1=mt_rand(750000,1200000)/8000000;
-		$rand2=mt_rand(750000,1200000)/9000000;
-		$rand3=mt_rand(750000,1200000)/9900000;
+		$rand1=mt_rand(750000,1200000)/10000000;
+		$rand2=mt_rand(750000,1200000)/10000000;
+		$rand3=mt_rand(750000,1200000)/10000000;
     $rand4=mt_rand(800000,1100000)/10000000;
 
 		// phases
-		$rand5=mt_rand(0,31415926)/1000000;
-		$rand6=mt_rand(0,31415926)/1000000;
+		$rand5=mt_rand(0,31415926)/10000000;
+		$rand6=mt_rand(0,31415926)/10000000;
 		$rand7=mt_rand(0,31415926)/10000000;
 		$rand8=mt_rand(0,31415926)/10000000;
 
