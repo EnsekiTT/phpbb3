@@ -998,7 +998,13 @@ if ($submit || $preview || $refresh)
 	// START Anti-Spam ACP
 	$sc_title = (empty($post_data['topic_title'])) ? $post_data['post_subject'] : $post_data['topic_title'];
 	$asacp_is_spam = false;
-	if (!sizeof($error) && $config['asacp_spam_words_posting_action'] && antispam::spam_words(array($sc_title, $message_parser->message)))
+  
+  $check_list = array('title' => $sc_title,
+                      'message' => $message_parser->message);
+  if(!$user->data[is_registered]){
+    $check_list['username'] = $post_data['username'];
+  }
+	if (!sizeof($error) && $config['asacp_spam_words_posting_action'] && antispam::spam_words($check_list))
 	{
 		switch ($config['asacp_spam_words_posting_action'])
 		{
@@ -1007,12 +1013,12 @@ if ($submit || $preview || $refresh)
 				antispam::add_log('LOG_SPAM_POST_DENIED', array($sc_title, $message_parser->message));
 				$error[] = $user->lang['SPAM_DENIED'];
 			break;
-
 			case 2 :
 				$asacp_is_spam = true;
 			break;
 		}
 	}
+
 	if (!sizeof($error) && $config['asacp_akismet_post_action'] && antispam::akismet($message_parser->message))
 	{
 		switch ($config['asacp_akismet_post_action'])
@@ -1028,18 +1034,7 @@ if ($submit || $preview || $refresh)
 			break;
 		}
 	}
-  if ($config['asacp_spam_words_posting_action'] && antispam::spam_words_jpn(array($message_parser->message))){
-    switch ($config['asacp_spam_words_posting_action']){
-    case 1:
-      $user->add_lang('mods/asacp');
-      antispam::add_log('LOG_SPAM_POST_DENIED', array($sc_title, $message_parser->message));
-      $error[] = $user->lang['SPAM_DENIED'];
-      break;
-    case 2:
-      $asacp_is_spam = true;
-      break;
-    }
-  }
+
 	// END Anti-Spam ACP
 	// Store message, sync counters
 	if (!sizeof($error) && $submit)

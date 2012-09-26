@@ -51,11 +51,20 @@ class spam_words
 		$str_from = array('<', '>', '[', ']', '.', ':');
 		$str_to = array('&lt;', '&gt;', '&#91;', '&#93;', '&#46;', '&#58;');
 
-		foreach ($this->messages as $text)
+		foreach ($this->messages as $key => $text)
 		{
 			$text = str_replace($str_to, $str_from, htmlspecialchars_decode($text));
 			foreach ($this->spam_words as $word)
 			{
+        if ($word['word_type'] == 1 && $key != 'username'){
+          continue;
+        }
+        if ($word['word_type'] == 2 && $key != 'title'){
+          continue;
+        }
+        if ($word['word_type'] == 3 && $key != 'message'){
+          continue;
+        }
 				if ($word['word_regex'] || $word['word_regex_auto'])
 				{
 					$matches = array();
@@ -65,10 +74,24 @@ class spam_words
 						$this->spam_flags += sizeof($matches[0]);
 					}
 				}
-				else
-				{
-					$this->spam_flags += substr_count($text, $word['word_text']);
+				else if($word['word_white_pattern'])
+        {
+          $matches = array();
+          mb_regex_encoding("UTF-8");
+          mb_ereg($word['word_text'], $text, $matches);
+          if (!isset($matches[0])){
+            $this->spam_flags++;
+          }
 				}
+        else
+        {
+          $matches = array();
+          mb_regex_encoding("UTF-8");
+          mb_ereg($word['word_text'], $text, $matches);
+          if (isset($matches[0])){
+            $this->spam_flags += sizeof($matches[0]);
+          }
+        }
 			}
 		}
 	}

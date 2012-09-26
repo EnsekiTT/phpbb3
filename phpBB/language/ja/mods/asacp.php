@@ -59,6 +59,14 @@ $lang = array_merge($lang, array(
 	'SPAM_DENIED'			=> 'このメッセージは、スパムとして判断された為に拒否されました。',
 	'STOP_FORUM_SPAM'		=> 'Stop Forum Spam',
 
+  'TITLE' => 'ANTISPAM',
+  //フィルタ
+  'TYPE' => '対象',
+  'WHITE_PATTERN' => 'ホワイトワード',
+  'WHITE_PATTERN_EXPLAIN' => 'テキスト中に必ず含まれなければいけない文字列を規定します。',
+  'WORD_TYPE' => 'フィルタ対象',
+  'WORD_TYPE_EXPLAIN' => 'このフィルタの対象を設定します。ユーザー名はゲストユーザのみが対象です。',
+
 	'USER_FLAG'				=> 'Flag',
 	'USER_FLAGGED'			=> 'User Flagged',
 	'USER_FLAG_CONFIRM'		=> 'Are you sure you want to flag the user %s?',

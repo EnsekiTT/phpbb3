@@ -50,6 +50,8 @@ class acp_asacp
 					'word_text'			=> utf8_normalize_nfc(request_var('word_text', '', true)),
 					'word_regex'		=> request_var('word_regex', 0),
 					'word_regex_auto'	=> request_var('word_regex_auto', 0),
+          'word_white_pattern' => request_var('word_white_pattern', 0),
+          'word_type'     => request_var('word_type', 0)
 				);
 				switch ($action)
 				{
@@ -62,7 +64,7 @@ class acp_asacp
 						$word = $db->sql_fetchrow($result);
 						if (!$word)
 						{
-                            trigger_error('NO_SPAM_WORD');
+              trigger_error('NO_SPAM_WORD');
 						}
 
 						if (!$submit)
@@ -74,6 +76,8 @@ class acp_asacp
 							'WORD_TEXT'			=> $word_data['word_text'],
 							'WORD_REGEX'		=> ($word_data['word_regex']) ? true : false,
 							'WORD_REGEX_AUTO'	=> ($word_data['word_regex_auto']) ? true : false,
+							'WORD_WHITE_PATTERN'	=> ($word_data['word_white_pattern']) ? true : false,
+              'WORD_TYPE'     => $word_data['word_type'],
 							'S_ADD'				=> ($action == 'add') ? true : false,
 							'U_WORD_ACTION'		=> $this->u_action . '&amp;action=' . $action . (($action == 'edit') ? '&amp;w=' . $word_id : ''),
 						));
@@ -138,6 +142,8 @@ class acp_asacp
 								'TEXT'			=> $row['word_text'],
 								'REGEX'			=> $row['word_regex'],
 								'REGEX_AUTO'	=> $row['word_regex_auto'],
+                'WHITE_PATTERN'     => $row['word_white_pattern'],
+                'TYPE'      => $row['word_type'],
 								'U_DELETE'		=> append_sid($this->u_action . '&amp;action=delete&amp;w=' . $row['word_id']),
 								'U_EDIT'		=> append_sid($this->u_action . '&amp;action=edit&amp;w=' . $row['word_id']),
 							));
