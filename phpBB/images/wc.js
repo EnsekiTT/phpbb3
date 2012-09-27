@@ -746,7 +746,7 @@ _HTML : function (tag,tagend,a)
         if(a){
         var cc = tag+a+tagend;
         }else if(u){
-                if(tag=="[code]"||tag=="[code=php]")
+                if(tag=="[code]")
                 {
                                 u=u.replace(/[\n\r]/ig,'');
                                 u=u.replace(/<(br|p|div|li).*?>/ig,"[BR/]");
@@ -758,7 +758,7 @@ _HTML : function (tag,tagend,a)
                                 var cc = tag+u+tagend;
                 }
         }else {
-                if(tag=="[code]"||tag=="[code=php]"||tag=="[quote]"){
+                if(tag=="[code]"||tag=="[quote]"){
                         var cc = tag+tagend;
                 }else if(tag =="[video]"){
                 var q=prompt(lang_s[14],"");
