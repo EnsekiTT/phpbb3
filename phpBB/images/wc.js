@@ -432,6 +432,7 @@ _HTMLtoBBcode : function (a) {
         r2(/&lt;/g, "<");
         r2(/&gt;/g, ">");
         r2(/ /g, " ");
+        r2(/&nbsp;/g, " ");
         r2(/&amp;/g, "&");
         r2(/     /g, "\t");
         r2(/\[ALMSAMIM\]/g, "\n");
