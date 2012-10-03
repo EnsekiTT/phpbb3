@@ -143,15 +143,14 @@ class KCAPTCHA{
 
 		
 		$center=$x/2;
-
-    $background_color[0] -= 180;
-    $background_color[1] -= 180;
-    $background_color[2] -= 180;
-    $foreground_color[0] += 180;
-    $foreground_color[1] += 180;
-    $foreground_color[2] += 180;
-
-
+    /*
+    $background_color[0] = 255 - $background_color[0];
+    $background_color[1] = 255 - $background_color[1];
+    $background_color[2] = 255 - $background_color[2];
+    $foreground_color[0] = 255 - $foreground_color[0];
+    $foreground_color[1] = 255 - $foreground_color[1];
+    $foreground_color[2] = 255 - $foreground_color[2];
+    */
 		// credits. To remove, see configuration file
 		$img2=imagecreatetruecolor($width, $height+($show_credits?12:0));
 		$foreground=imagecolorallocate($img2, $foreground_color[0], $foreground_color[1], $foreground_color[2]);
