@@ -1123,7 +1123,7 @@ if ($submit || $preview || $refresh)
       
       /**************************/
       if(isset($_POST['user_agent'])){
-        if($post_data['user_agent'] == ''){
+        if($post_data['user_agent'] == '' || $mode == 'quote'){
           $post_data['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
         }
       }else{ 
