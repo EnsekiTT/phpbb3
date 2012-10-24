@@ -68,25 +68,22 @@ class spam_words
         mb_regex_encoding("UTF-8");
 				if ($word['word_regex'] || $word['word_regex_auto'])
 				{
-					$matches = array();
-					preg_match_all($word['word_text'], $text, $matches);
-					if (isset($matches[0]))
+					if (mb_ereg($word['word_text'], $text))
 					{
-						$this->spam_flags += sizeof($matches[0]);
+						$this->spam_flags++;
 					}
 				}
 				else if($word['word_white_pattern'])
         {
           $matches = array();
-          mb_ereg($word['word_text'], $text, $matches);
-          if (!isset($matches[0])){
+          if (mb_ereg($word['word_text'], $text) == false){
             $this->spam_flags++;
           }
 				}
         else
         {
           $matches = array();
-          mb_ereg($word['word_text'], $text, $matches);
+          preg_match_all($word['word_text'], $text, $matches);
           if (isset($matches[0])){
             $this->spam_flags += sizeof($matches[0]);
           }
