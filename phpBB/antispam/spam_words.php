@@ -54,6 +54,7 @@ class spam_words
 		foreach ($this->messages as $key => $text)
 		{
 			$text = str_replace($str_to, $str_from, htmlspecialchars_decode($text));
+      mb_regex_encoding("UTF-8");
 			foreach ($this->spam_words as $word)
 			{
         if ($word['word_type'] == 1 && $key != 'username'){
@@ -65,7 +66,6 @@ class spam_words
         if ($word['word_type'] == 3 && $key != 'message'){
           continue;
         }
-        mb_regex_encoding("UTF-8");
 				if ($word['word_regex'] || $word['word_regex_auto'])
 				{
 					if (mb_ereg($word['word_text'], $text))
