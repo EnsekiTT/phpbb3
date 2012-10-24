@@ -65,6 +65,7 @@ class spam_words
         if ($word['word_type'] == 3 && $key != 'message'){
           continue;
         }
+        mb_regex_encoding("UTF-8");
 				if ($word['word_regex'] || $word['word_regex_auto'])
 				{
 					$matches = array();
@@ -77,7 +78,6 @@ class spam_words
 				else if($word['word_white_pattern'])
         {
           $matches = array();
-          mb_regex_encoding("UTF-8");
           mb_ereg($word['word_text'], $text, $matches);
           if (!isset($matches[0])){
             $this->spam_flags++;
@@ -86,7 +86,6 @@ class spam_words
         else
         {
           $matches = array();
-          mb_regex_encoding("UTF-8");
           mb_ereg($word['word_text'], $text, $matches);
           if (isset($matches[0])){
             $this->spam_flags += sizeof($matches[0]);
