@@ -82,10 +82,10 @@ class spam_words
 				}
         else
         {
-          $matches = array();
-          preg_match_all($word['word_text'], $text, $matches);
-          if (isset($matches[0])){
-            $this->spam_flags += sizeof($matches[0]);
+//          $matches = array();
+//          preg_match_all($word['word_text'], $text, $matches);
+          if (mb_ereg($word['word_text'], $text)){
+            $this->spam_flags++;
           }
         }
 			}
