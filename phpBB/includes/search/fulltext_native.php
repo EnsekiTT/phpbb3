@@ -481,7 +481,7 @@ class fulltext_native extends search_backend
 		);
 
     if($type == 'posts'){
-      $sql_array['LEFT_JOIN'][1] = array('FROM' => array(TOPICS_TABLE => 't'),
+      $sql_array['LEFT_JOIN'][] = array('FROM' => array(TOPICS_TABLE => 't'),
                                          'ON' => 'p.topic_id = t.topic_id',
                                          );
     }
