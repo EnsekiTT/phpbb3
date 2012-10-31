@@ -1,0 +1,10 @@
+<SearchPlugin xmlns="http://www.mozilla.org/2006/browser/search/" xmlns:os="http://a9.com/-/spec/opensearch/1.1/">
+<os:ShortName>MozillaZine.jp フォーラム</os:ShortName>
+<os:Description>MozillaZine.jp フォーラムのトピックを検索します</os:Description>
+<os:InputEncoding>UTF-8</os:InputEncoding>
+<os:Image width="16" height="16">data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH1QIMAh0n59PG/QAAAjJJREFUeNqlkjFoFEEUhr+Lc/DWXGBGEshCUmxhcXZnZ7pbsImVtlYi2EQsJF0URCy9NDkRgrGL3V0K0UaIhWK6KBizRcAFEfbgDmbQhR1kIRabEI2igh9MMfDzzf8eU+u+2t4HCJUlxAFQIDgEWxo8f0aJgkhlhKXDUwABWnlCBa50ZKXGUonkdwJjE1yeHrx9QFkgKsCE00TKEylHeiA6rjkxdYo727sJtTqUJZRj4D+ljD68x59sMPoypPzmmR33GDzDryXB+AT1MaiPgUIJ6V6G9xBOarQWzESARE0K70GEwllcbpnWjjOiSTOHzDarEZqtmGQnwQ0s3llEG0xD0FojAsYYRAQE0lGGEU806bFDD1MtVLM1x7nBgK0XPUDwriBzlmxkEQmQhquExhAI+IbH5pZw2uOHQu1N8nEfIE0T1h92sFlGOKvxuccWniAQRKSSCQQNQTc0ZiqAUlPb3qsEAOneW0JlKbxnMHLYvCAbOgafM2zu8HkBgGhDNBMxd36e2m56JDjE5Q7rLNFMBP/ykY7Te7JO8i6hu9r9q6CWZdk+/4ESBfMXL7H1eguApdtLPwX6G32SnYRHq13idszlK1cBiNsxizeuUyts1aCz3GXz5SbPnvbpLB9Vt85xttVi7fEacTumt9Enbsd0Vh5Q2AwF4Jzl/kqH5/3eLxWN1mhtoF7do9MRcXsOozUAY6Jg4eYiznnm4gt0VrpV+IdzuOiFa1X9W3fvYXOHKPgO86b1HqluU2oAAAAASUVORK5CYII=</os:Image>
+<SearchForm>http://forums.mozillazine.jp/</SearchForm>
+<os:Url type="text/html" method="GET" template="http://forums.mozillazine.jp/search.php?keywords={searchTerms}&amp;sr=topics">
+</os:Url><os:Url type="application/opensearchdescription+xml" method="GET" template="http://forums.mozillazine.jp/search.xml" rel="self">
+</os:Url>
+</SearchPlugin>
