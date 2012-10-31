@@ -725,7 +725,7 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 			if (sizeof($shadow_topic_list))
 			{
 				$sql = 'SELECT *
-					FROM ' . TOPICS_TABLE . '
+					FROM ' . TOPICS_TABLE . ' t
 					WHERE ' . $db->sql_in_set('topic_id', array_keys($shadow_topic_list));
 				$result = $db->sql_query($sql);
 

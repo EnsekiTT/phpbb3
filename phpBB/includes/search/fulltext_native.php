@@ -480,10 +480,10 @@ class fulltext_native extends search_backend
 			)),
 		);
 
-    if($type == 'posts'){
+    if($type == 'posts' && $firstpost_only != FALSE){
       $sql_array['LEFT_JOIN'][] = array('FROM' => array(TOPICS_TABLE => 't'),
-                                         'ON' => 'p.topic_id = t.topic_id',
-                                         );
+                                        'ON' => 'p.topic_id = t.topic_id',
+                                        ); 
     }
 
 		$title_match = '';
