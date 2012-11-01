@@ -1036,6 +1036,13 @@ if ($submit || $preview || $refresh)
 	}
 
 	// END Anti-Spam ACP
+  // START Check Username Empty
+  if (utf8_clean_string($post_data['username']) === '' && $user->data['is_registered']!=1 && $mode='post')
+    {
+      $error[] = $user->lang['EMPTY_USERNAME'];
+    }
+  // END Check Username Empty
+
 	// Store message, sync counters
 	if (!sizeof($error) && $submit)
 	{
