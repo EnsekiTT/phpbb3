@@ -12,16 +12,6 @@ if (!defined('IN_PHPBB'))
 	exit;
 }
 
-function reg_check($text)
-{
-  $endings = array('/');
-  foreach($endings as $end){
-    $text = str_replace( $end, '\\'.$end, $text);
-  }
-  $text = str_replace( '*', '.*', $text);
-  return '/'.$text.'/';
-}
-
 class spam_words
 {
 	public $messages = array();
@@ -43,6 +33,7 @@ class spam_words
 				{
 					$row['word_text'] = $this->build_regex($row['word_text']);
 				}
+
 				$this->spam_words[] = $row;
 			}
 			$db->sql_freeresult($result);
@@ -56,53 +47,31 @@ class spam_words
 		{
 			return;
 		}
+
 		$str_from = array('<', '>', '[', ']', '.', ':');
 		$str_to = array('&lt;', '&gt;', '&#91;', '&#93;', '&#46;', '&#58;');
 
-		foreach ($this->messages as $key => $text)
+		foreach ($this->messages as $text)
 		{
 			$text = str_replace($str_to, $str_from, htmlspecialchars_decode($text));
-      foreach ($this->spam_words as $word)
+			foreach ($this->spam_words as $word)
 			{
-        if ($word['word_type'] == 1 && $key != 'username'){
-          continue;
-        }
-        if ($word['word_type'] == 2 && $key != 'title'){
-          continue;
-        }
-        if ($word['word_type'] == 3 && $key != 'message'){
-          continue;
-        }
 				if ($word['word_regex'] || $word['word_regex_auto'])
 				{
-          $count = preg_match($word['word_text'], $text);
-					if ($count > 0)
+					$matches = array();
+					preg_match_all($word['word_text'], $text, $matches);
+					if (isset($matches[0]))
 					{
-						$this->spam_flags += $count;
+						$this->spam_flags += sizeof($matches[0]);
 					}
 				}
-				else if($word['word_white_pattern'])
-        {
-          $reg_text = reg_check($word['word_text']);
-          $count = preg_match($reg_text, $text);
-          if ($count === 0)
-          {
-            $this->spam_flags++;
-          }
+				else
+				{
+					$this->spam_flags += substr_count($text, $word['word_text']);
 				}
-        else
-        {
-          $count = 0;
-          $reg_text = reg_check($word['word_text']);
-           $count = preg_match($reg_text, $text);
-          if ($count > 0){
-            $this->spam_flags += $count;
-          }
-        }
 			}
 		}
 	}
-
 
 	public function build_regex($text)
 	{

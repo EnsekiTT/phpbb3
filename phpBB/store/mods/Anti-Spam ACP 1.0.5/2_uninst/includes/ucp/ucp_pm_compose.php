@@ -715,6 +715,8 @@ function compose_pm($id, $mode, $action, $user_folders = array())
 			}
 		}
 
+
+
 		// Store message, sync counters
 		if (!sizeof($error) && $submit)
 		{

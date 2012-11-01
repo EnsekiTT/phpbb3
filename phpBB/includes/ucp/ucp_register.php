@@ -249,6 +249,7 @@ class ucp_register
 
 
 
+
 			// START Anti-Spam ACP
 			antispam::ucp_register($data, $error);
 			// END Anti-Spam ACP

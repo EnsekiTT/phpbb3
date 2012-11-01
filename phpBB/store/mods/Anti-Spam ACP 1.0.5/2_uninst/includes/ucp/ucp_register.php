@@ -244,6 +244,8 @@ class ucp_register
 				}
 			}
 
+
+
 			if (!sizeof($error))
 			{
 				$server_url = generate_board_url();

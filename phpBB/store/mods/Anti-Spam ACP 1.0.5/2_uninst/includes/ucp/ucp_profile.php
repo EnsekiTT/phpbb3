@@ -433,6 +433,8 @@ class ucp_profile
 					'INTERESTS'	=> $data['interests'],
 				));
 
+
+
 				// Get additional profile fields and assign them to the template block var 'profile_fields'
 				$user->get_profile_fields($user->data['user_id']);
 

@@ -112,11 +112,9 @@
 
 		<table cellspacing="1" cellpadding="0">
 			<tr>
-				<th style="width: 50%;">{L_ACP_WORDS}</th>
+				<th style="width: 50%;">{L_SPAM_WORD_TEXT}</th>
 				<th>{L_REGEX}</th>
 				<th>{L_REGEX_AUTO}</th>
-        <th>{L_WHITE_PATTERN}</th>
-        <th>{L_TYPE}</th>
 				<th>{L_ACTIONS}</th>
 			</tr>
 			<!-- BEGIN spam_words -->
@@ -124,18 +122,6 @@
 				<td>{spam_words.TEXT}</td>
 				<td><!-- IF spam_words.REGEX -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
 				<td><!-- IF spam_words.REGEX_AUTO -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
-				<td><!-- IF spam_words.WHITE_PATTERN -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
-        <td>
-          <!-- IF spam_words.TYPE == 0 -->
-          {L_ALL}
-          <!-- ELSEIF spam_words.TYPE == 1 -->
-          {L_USERNAME}
-          <!-- ELSEIF spam_words.TYPE == 2 -->
-          {L_SUBJECT}
-          <!-- ELSE -->
-          {L_MESSAGE}
-          <!-- ENDIF -->
-        </td>
 				<td>
 					<a href="{spam_words.U_EDIT}">{L_EDIT}</a> | <a href="{spam_words.U_DELETE}">{L_DELETE}</a>
 				</td>
@@ -159,18 +145,6 @@
 					<dt><label for="word_regex_auto">{L_REGEX_AUTO}:</label><br /><span>{L_REGEX_AUTO_EXPLAIN}</dt>
 					<dd><input type="radio" id="word_regex_auto" name="word_regex_auto" value="1" class="radio"<!-- IF WORD_REGEX_AUTO --> checked="checked"<!-- ENDIF -->> {L_YES} &nbsp;<input type="radio" id="word_regex_auto" name="word_regex_auto" value="0" class="radio"<!-- IF not WORD_REGEX_AUTO --> checked="checked"<!-- ENDIF -->> {L_NO}</dd>
 				</dl>
-				<dl>
-					<dt><label for="word_white_pattern">{L_WHITE_PATTERN}:</label><br /><span>{L_WHITE_PATTERN_EXPLAIN}</dt>
-					<dd><input type="radio" id="word_white_pattern" name="word_white_pattern" value="1" class="radio"<!-- IF WORD_WHITE_PATTERN --> checked="checked"<!-- ENDIF -->> {L_YES} &nbsp;<input type="radio" id="word_white_pattern" name="word_white_pattern" value="0" class="radio"<!-- IF not WORD_WHITE_PATTERN --> checked="checked"<!-- ENDIF -->> {L_NO}</dd>
-				</dl>
-				<dl>
-					<dt><label for="word_type">{L_WORD_TYPE}:</label><br /><span>{L_WORD_TYPE_EXPLAIN}</dt>
-					<dd><input type="radio" id="word_type" name="word_type" value="0" class="radio"<!-- IF WORD_TYPE == 0 --> checked="checked"<!-- ENDIF -->> {L_ALL}
-            &nbsp;<input type="radio" id="word_type" name="word_type" value="1" class="radio"<!-- IF WORD_TYPE == 1 --> checked="checked"<!-- ENDIF -->> {L_USERNAME}
-            &nbsp;<input type="radio" id="word_type" name="word_type" value="2" class="radio"<!-- IF WORD_TYPE == 2 --> checked="checked"<!-- ENDIF -->> {L_SUBJECT}
-            &nbsp;<input type="radio" id="word_type" name="word_type" value="3" class="radio"<!-- IF WORD_TYPE == 3 --> checked="checked"<!-- ENDIF -->> {L_MESSAGE}
-          </dd>
-				</dl>
 			</fieldset>
 			<fieldset class="submit-buttons">
 				<legend>{L_SUBMIT}</legend>
@@ -181,4 +155,5 @@
 		</form>
 	<!-- ENDIF -->
 <!-- ENDIF -->
+
 <!-- INCLUDE overall_footer.html -->
