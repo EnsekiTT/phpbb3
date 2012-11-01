@@ -124,4 +124,7 @@ foreach ($cache->obtain_hooks() as $hook)
 
 
 
+// START Anti-Spam ACP
+require($phpbb_root_path . 'antispam/asacp.' . $phpEx);
+// END Anti-Spam ACP
 ?>

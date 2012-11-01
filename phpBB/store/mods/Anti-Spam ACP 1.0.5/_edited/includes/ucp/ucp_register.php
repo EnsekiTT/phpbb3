@@ -39,6 +39,9 @@ class ucp_register
 		// START Anti-Spam ACP
 		antispam::ucp_preregister();
 		// END Anti-Spam ACP
+		// START Anti-Spam ACP
+		antispam::ucp_preregister();
+		// END Anti-Spam ACP
 
 		$coppa			= (isset($_REQUEST['coppa'])) ? ((!empty($_REQUEST['coppa'])) ? 1 : 0) : false;
 		$agreed			= (!empty($_POST['agreed'])) ? 1 : 0;
@@ -249,6 +252,9 @@ class ucp_register
 
 
 
+			// START Anti-Spam ACP
+			antispam::ucp_register($data, $error);
+			// END Anti-Spam ACP
 
 			// START Anti-Spam ACP
 			antispam::ucp_register($data, $error);
@@ -315,6 +321,9 @@ class ucp_register
 
 				// Register user...
 				$user_id = user_add($user_row, $cp_data);
+				// START Anti-Spam ACP
+				antispam::ucp_postregister($user_id, $user_row);
+				// END Anti-Spam ACP
 				// START Anti-Spam ACP
 				antispam::ucp_postregister($user_id, $user_row);
 				// END Anti-Spam ACP

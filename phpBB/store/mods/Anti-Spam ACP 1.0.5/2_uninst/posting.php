@@ -993,49 +993,6 @@ if ($submit || $preview || $refresh)
 		}
 	}
 
-
-
-	// START Anti-Spam ACP
-	$sc_title = (empty($post_data['topic_title'])) ? $post_data['post_subject'] : $post_data['topic_title'];
-	$asacp_is_spam = false;
-  
-  $check_list = array('title' => $sc_title,
-                      'message' => $message_parser->message);
-  if(!$user->data[is_registered]){
-    $check_list['username'] = $post_data['username'];
-  }
-	if (!sizeof($error) && $config['asacp_spam_words_posting_action'] && antispam::spam_words($check_list))
-	{
-		switch ($config['asacp_spam_words_posting_action'])
-		{
-			case 1 :
-				$user->add_lang('mods/asacp');
-				antispam::add_log('LOG_SPAM_POST_DENIED', array($sc_title, $message_parser->message));
-				$error[] = $user->lang['SPAM_DENIED'];
-			break;
-			case 2 :
-				$asacp_is_spam = true;
-			break;
-		}
-	}
-
-	if (!sizeof($error) && $config['asacp_akismet_post_action'] && antispam::akismet($message_parser->message))
-	{
-		switch ($config['asacp_akismet_post_action'])
-		{
-			case 1 :
-				$user->add_lang('mods/asacp');
-				antispam::add_log('LOG_SPAM_POST_DENIED_AKISMET', array($sc_title, $message_parser->message));
-				$error[] = $user->lang['SPAM_DENIED'];
-			break;
-
-			case 2 :
-				$asacp_is_spam = true;
-			break;
-		}
-	}
-
-	// END Anti-Spam ACP
 	// Store message, sync counters
 	if (!sizeof($error) && $submit)
 	{
@@ -1123,7 +1080,7 @@ if ($submit || $preview || $refresh)
       
       /**************************/
       if(isset($_POST['user_agent'])){
-        if($post_data['user_agent'] == '' || $mode == 'quote'){
+        if($post_data['user_agent'] == ''){
           $post_data['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
         }
       }else{ 
@@ -1183,10 +1140,6 @@ if ($submit || $preview || $refresh)
 				$data['topic_replies'] = $post_data['topic_replies'];
 			}
 			// The last parameter tells submit_post if search indexer has to be run
-
-			
-
-			
 			$redirect_url = submit_post($mode, $post_data['post_subject'], $post_data['username'], $post_data['topic_type'], $poll, $data, $update_message, ($update_message || $update_subject) ? true : false);
 
 			if ($config['enable_post_confirm'] && !$user->data['is_registered'] && (isset($captcha) && $captcha->is_solved() === true) && ($mode == 'post' || $mode == 'reply' || $mode == 'quote'))
@@ -1218,9 +1171,7 @@ if ($submit || $preview || $refresh)
 // Preview
 if (!sizeof($error) && $preview)
 {
-  if($user->data[user_id]==1 ){
-    $captcha->reset();
-  }
+  $captcha->reset();
 	$post_data['post_time'] = ($mode == 'edit') ? $post_data['post_time'] : $current_time;
 
 	$preview_message = $message_parser->format_display($post_data['enable_bbcode'], $post_data['enable_urls'], $post_data['enable_smilies'], false);

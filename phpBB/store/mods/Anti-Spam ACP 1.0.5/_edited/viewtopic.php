@@ -1169,6 +1169,9 @@ while ($row = $db->sql_fetchrow($result))
 				// START Anti-Spam ACP
 				'user_flagged'	=> $row['user_flagged'] ? true : false,
 				// END Anti-Spam ACP
+				// START Anti-Spam ACP
+				'user_flagged'	=> $row['user_flagged'] ? true : false,
+				// END Anti-Spam ACP
 
 				'author_full'		=> get_username_string('full', $poster_id, $row['username'], $row['user_colour']),
 				'author_colour'		=> get_username_string('colour', $poster_id, $row['username'], $row['user_colour']),
@@ -1631,6 +1634,9 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 
 	// Dump vars into template
 	$template->assign_block_vars('postrow', $postrow);
+	// START Anti-Spam ACP
+	antispam::flagged_output($poster_id, $user_cache[$poster_id], 'postrow.custom_fields', $row['post_id']);
+	// END Anti-Spam ACP
 	// START Anti-Spam ACP
 	antispam::flagged_output($poster_id, $user_cache[$poster_id], 'postrow.custom_fields', $row['post_id']);
 	// END Anti-Spam ACP

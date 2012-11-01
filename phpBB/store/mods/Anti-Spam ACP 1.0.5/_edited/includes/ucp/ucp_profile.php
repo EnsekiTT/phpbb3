@@ -341,6 +341,9 @@ class ucp_profile
 					// START Anti-Spam ACP
 					antispam::ucp_profile($data, $error);
 					// END Anti-Spam ACP
+					// START Anti-Spam ACP
+					antispam::ucp_profile($data, $error);
+					// END Anti-Spam ACP
 
 					if (!sizeof($error))
 					{
@@ -438,6 +441,9 @@ class ucp_profile
 
 
 
+				// START Anti-Spam ACP
+				antispam::ucp_profile_display();
+				// END Anti-Spam ACP
 
 				// START Anti-Spam ACP
 				antispam::ucp_profile_display();
@@ -466,6 +472,9 @@ class ucp_profile
 				$signature		= utf8_normalize_nfc(request_var('signature', (string) $user->data['user_sig'], true));
 
 				add_form_key('ucp_sig');
+				// START Anti-Spam ACP
+				antispam::ucp_signature($signature, $error);
+				// END Anti-Spam ACP
 				// START Anti-Spam ACP
 				antispam::ucp_signature($signature, $error);
 				// END Anti-Spam ACP

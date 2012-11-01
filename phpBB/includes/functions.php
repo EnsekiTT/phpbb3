@@ -4697,7 +4697,6 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 
 
 
-
 	// START Anti-Spam ACP
 	antispam::page_header();
 	// END Anti-Spam ACP

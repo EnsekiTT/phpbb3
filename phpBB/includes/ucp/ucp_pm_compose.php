@@ -717,7 +717,6 @@ function compose_pm($id, $mode, $action, $user_folders = array())
 
 
 
-
 		// START Anti-Spam ACP
 		if (!sizeof($error) && $config['asacp_spam_words_pm_action'] && antispam::spam_words(array($subject, $message_parser->message)))
 		{

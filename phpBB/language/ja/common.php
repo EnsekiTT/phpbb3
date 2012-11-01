@@ -165,7 +165,6 @@ $lang = array_merge($lang, array(
 	'EMAIL_ADDRESS'						=> 'メールアドレス',
 	'EMAIL_SMTP_ERROR_RESPONSE'			=> 'メール送信中にエラーが発生しました。<br /><strong>エラー行: %1$s</strong><br />サーバからのリスポンス: %2$s',
 	'EMPTY_SUBJECT'						=> 'トピックを投稿するには件名を入力する必要があります',
-  'EMPTY_USERNAME'          => 'ユーザー名を入力する必要があります', // Check Empty Username
 	'EMPTY_MESSAGE_SUBJECT'				=> 'メッセージを送信するには件名を入力する必要があります',
 	'ENABLED'							=> '有効',
 	'ENCLOSURE'							=> '囲み文字',

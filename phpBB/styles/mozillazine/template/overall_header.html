@@ -25,7 +25,7 @@
 
 <link rel="shortcut icon" href="/favicon.ico" title="%s"/>
 <link rel="stylesheet" href="{T_STYLESHEET_LINK}" type="text/css" />
-
+<link rel="search" type="application/opensearchdescription+xml" href="/search.xml" title="MozillaZine.jp フォーラム検索"/>
 <script type="text/javascript">
 // <![CDATA[
 <!-- IF S_USER_PM_POPUP and S_NEW_PM -->
@@ -168,7 +168,6 @@ function marklist(id, name, state)
 						<!-- IF S_DISPLAY_PM --> &nbsp;<a href="{U_PRIVATEMSGS}"><img src="{T_THEME_PATH}/images/icon_mini_message.gif" width="12" height="13" alt="*" /> {PRIVATE_MESSAGE_INFO}<!-- IF PRIVATE_MESSAGE_INFO_UNREAD -->, {PRIVATE_MESSAGE_INFO_UNREAD}<!-- ENDIF --></a><!-- ENDIF -->
 					<!-- ELSEIF S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) --> &nbsp;<a href="{U_REGISTER}"><img src="{T_THEME_PATH}/images/icon_mini_register.gif" width="12" height="13" alt="*" /> {L_REGISTER}</a>
 					<!-- ENDIF -->
-						<!-- IF U_USER_FLAG_NEW --> &nbsp;<a href="{U_USER_FLAG_NEW}" style="color: red; font-weight: bold;">[ {L_USER_FLAG_NEW} ]</a><!-- ENDIF -->
 						<!-- IF U_USER_FLAG_NEW --> &nbsp;<a href="{U_USER_FLAG_NEW}" style="color: red; font-weight: bold;">[ {L_USER_FLAG_NEW} ]</a><!-- ENDIF -->
 				<!-- ENDIF -->
 				<a href="{U_FAQ}"><img src="{T_THEME_PATH}/images/icon_mini_faq.gif" width="12" height="13" alt="*" /> {L_FAQ}</a>

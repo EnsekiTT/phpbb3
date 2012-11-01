@@ -4697,6 +4697,9 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 
 
 
+	// START Anti-Spam ACP
+	antispam::page_header();
+	// END Anti-Spam ACP
 	// application/xhtml+xml not used because of IE
 	header('Content-type: text/html; charset=UTF-8');
 
