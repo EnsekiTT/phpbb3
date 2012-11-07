@@ -62,7 +62,9 @@
 		}else{
 		document.writeln( '<img src="{SITE_FULL_URL}/images/editor/'+ images[i] +'" />');
 		}
-	document.writeln('<img id="uploader" class="button" rel="uploaderrel" onmouseover="overIcon(this)" onmouseout="outIcon(this)" src="{SITE_FULL_URL}/images/editor/upload.gif"/>');	
+  /*
+   document.writeln('<img id="uploader" class="button" rel="uploaderrel" onmouseover="overIcon(this)" onmouseout="outIcon(this)" src="{SITE_FULL_URL}/images/editor/upload.gif"/>');
+*/
 	document.writeln('<img src="{SITE_FULL_URL}/images/editor/switch.gif" onclick="comm._toggle()" id="switch" style="border:1px solid #316ac5;background:#f1f6f8;padding:1px;" title="{L_E_SWITCH}" />');	
 	// custom BBcode
 	<!-- IF S_BBCODE_IMAGE_SHOW -->
@@ -97,7 +99,8 @@
 	<div id="Colorpalettefs" style="position:absolute; display:none;background-color:#EFEFEF;border:1px solid #598FEF;padding:2px;position:absolute;width:110px;">
 	<script language="JavaScript">comm._palette('forecolor');</script>
 	</div>
-	<iframe src ="{SITE_FULL_URL}/imguploader.php" id="uploaderrel" width="250px" height="100px" scrolling="no" frameborder="0" style="position:absolute; display:none;background:#fff;border:#eee 4px solid"></iframe>
+	<iframe src ="{SITE_FULL_URL}/imguploader.php" id="uploaderrel" width="250px" height="100px" scrolling="no" frameborder="0" style="position:absolute; display:none;background:#fff;border:#eee 4px solid">
+  </iframe>
 	<script type="text/javascript">
 	document.writeln('<iframe id="box" scrolling="auto"  style="border:1px solid #a9b8c2;width: 100%; height: 253px;" frameborder="0"></iframe>');
 	document.writeln('<textarea id="box_text" style="display:none;width: 99.6%; height: 249px;background:'+ lang_s[6] + ';" cols="60" rows="10" class="inputbox" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);"></textarea>');	
