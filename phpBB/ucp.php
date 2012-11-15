@@ -73,12 +73,13 @@ switch ($mode)
 	break;
 
 	case 'login':
+    //ログイン時リダイレクト
+    $red_for = str_replace("/", "%", $_GET["red"]);
 		if ($user->data['is_registered'])
 		{
-			redirect(append_sid("{$phpbb_root_path}index.$phpEx"));
+			redirect(append_sid("{$phpbb_root_path}$red_for"));
 		}
-
-		login_box(request_var('redirect', "index.$phpEx"));
+		login_box(request_var('redirect', $red_for));
 	break;
 
 	case 'logout':
