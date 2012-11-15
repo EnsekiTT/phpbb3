@@ -4440,6 +4440,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		$u_login_logout = append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=login');
     // Redirect for Before login page
     $current_URL = str_replace("%", "/", $user->page["page"]);
+    $current_URL = str_replace("&", "%26", $current_URL);
     $u_login_logout = $u_login_logout."&red=".$current_URL;
 		$l_login_logout = $user->lang['LOGIN'];
 	}
