@@ -1036,12 +1036,13 @@ if ($submit || $preview || $refresh)
 	}
 
 	// END Anti-Spam ACP
-  // START Check Username Empty
-  if (utf8_clean_string($post_data['username']) === '' && $user->data['is_registered']!=1 && $mode='post')
+    // START Check Username Empty
+    if (utf8_clean_string($post_data['username']) === '' && !$user->data['is_registered'] && ($mode == 'post' || $mode == 'reply' || $mode == 'quote'))
     {
-      $error[] = $user->lang['EMPTY_USERNAME'];
+        $error[] = $user->lang['EMPTY_USERNAME'];
     }
-  // END Check Username Empty
+
+    // END Check Username Empty
 
 	// Store message, sync counters
 	if (!sizeof($error) && $submit)
@@ -1204,11 +1205,6 @@ if ($submit || $preview || $refresh)
 			antispam::submit_post($mode, $data['post_id']);
 			// END Anti-Spam ACP
 
-			if ($config['enable_post_confirm'] && !$user->data['is_registered'] && (isset($captcha) && $captcha->is_solved() === true) && ($mode == 'post' || $mode == 'reply' || $mode == 'quote'))
-			{
-				$captcha->reset();
-			}
-
 			// Check the permissions for post approval. Moderators are not affected.
 			if ((!$auth->acl_get('f_noapprove', $data['forum_id']) && !$auth->acl_get('m_approve', $data['forum_id']) && empty($data['force_approved_state'])) || (isset($data['force_approved_state']) && !$data['force_approved_state']))
 			{
@@ -1233,9 +1229,6 @@ if ($submit || $preview || $refresh)
 // Preview
 if (!sizeof($error) && $preview)
 {
-  if($user->data[user_id]==1 ){
-    $captcha->reset();
-  }
 	$post_data['post_time'] = ($mode == 'edit') ? $post_data['post_time'] : $current_time;
 
 	$preview_message = $message_parser->format_display($post_data['enable_bbcode'], $post_data['enable_urls'], $post_data['enable_smilies'], false);
@@ -1454,9 +1447,9 @@ generate_forum_nav($post_data);
 generate_forum_rules($post_data);
 
 // Posting uses is_solved for legacy reasons. Plugins have to use is_solved to force themselves to be displayed.
-if ($config['enable_post_confirm'] && !$user->data['is_registered'] && (isset($captcha) && $captcha->is_solved() === false) && ($mode == 'post' || $mode == 'reply' || $mode == 'quote'))
+$captcha->reset();
+if ($config['enable_post_confirm'] && !$user->data['is_registered'] && ($mode == 'post' || $mode == 'reply' || $mode == 'quote'))
 {
-
 	$template->assign_vars(array(
 		'S_CONFIRM_CODE'			=> true,
 		'CAPTCHA_TEMPLATE'			=> $captcha->get_template(),

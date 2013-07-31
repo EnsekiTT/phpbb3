@@ -1,4 +1,5 @@
 *~
+.DS*
 /phpunit.xml
 /phpBB/cache/*.php
 /phpBB/cache/queue.php.lock
