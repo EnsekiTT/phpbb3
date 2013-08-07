@@ -1447,9 +1447,9 @@ generate_forum_nav($post_data);
 generate_forum_rules($post_data);
 
 // Posting uses is_solved for legacy reasons. Plugins have to use is_solved to force themselves to be displayed.
-$captcha->reset();
 if ($config['enable_post_confirm'] && !$user->data['is_registered'] && ($mode == 'post' || $mode == 'reply' || $mode == 'quote'))
 {
+    $captcha->reset();
 	$template->assign_vars(array(
 		'S_CONFIRM_CODE'			=> true,
 		'CAPTCHA_TEMPLATE'			=> $captcha->get_template(),
